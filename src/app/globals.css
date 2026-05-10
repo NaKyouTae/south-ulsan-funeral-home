@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+:root {
+  /* 메인 톤: 차분한 다크 그린 (#1f3a34) + 따뜻한 아이보리 + 골드 액센트 */
+  --color-bg: #fbfaf6;
+  --color-surface: #ffffff;
+  --color-border: #e6e1d4;
+  --color-fg: #1c1c1a;
+  --color-fg-muted: #5b5b56;
+  --color-primary: #1f3a34;
+  --color-primary-soft: #2d544a;
+  --color-primary-tint: #e8efec;
+  --color-accent: #b5894a;
+  --color-accent-soft: #d6b67e;
+  --color-danger: #8a3a3a;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-fg);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-muted: var(--color-fg-muted);
+  --color-primary: var(--color-primary);
+  --color-primary-soft: var(--color-primary-soft);
+  --color-primary-tint: var(--color-primary-tint);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-danger: var(--color-danger);
+  --font-sans: var(--font-noto-sans-kr), "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: var(--font-noto-serif-kr), "Nanum Myeongjo", "Times New Roman", serif;
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* 패턴: 은은한 격자 백그라운드 (skypark의 그라데이션과 차별화) */
+.bg-paper {
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(31, 58, 52, 0.06) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+.bg-hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 30, 27, 0.55) 0%,
+    rgba(15, 30, 27, 0.75) 100%
+  );
+}
+
+/* 절제된 카드 */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+/* 메뉴 hover underline */
+.nav-link {
+  position: relative;
+  padding: 8px 4px;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: all 0.25s ease;
+  transform: translateX(-50%);
+}
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  width: 100%;
+}
+
+/* 섹션 헤더 (서브타이틀 라인) */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-accent);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.section-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+/* 버튼 */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 2px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+.btn-primary:hover {
+  background: var(--color-primary-soft);
+}
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 13px 27px;
+  border-radius: 2px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+/* 다크 모드: 시스템 다크는 비활성화 (장례식장 사이트는 라이트 톤 유지) */
