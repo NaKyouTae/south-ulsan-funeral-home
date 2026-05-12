@@ -47,13 +47,6 @@ const QUICK_LINKS = [
   },
 ];
 
-const NOTICES = [
-  { tag: "공지", title: "추석 연휴 빈소 운영 안내", date: "2026.05.08" },
-  { tag: "공지", title: "주차장 임시 운영 변경 안내", date: "2026.04.22" },
-  { tag: "안내", title: "장례용품 가격 변경 안내", date: "2026.04.10" },
-  { tag: "공지", title: "개인정보 처리방침 개정 안내", date: "2026.03.15" },
-];
-
 const ROOMS = [
   { name: "1호실", status: "사용중", deceased: "故 김ㅇㅇ", chief: "김ㅇㅇ", departure: "05.12 06:30", site: "울산하늘공원" },
   { name: "2호실", status: "사용중", deceased: "故 이ㅇㅇ", chief: "이ㅇㅇ", departure: "05.12 08:00", site: "울주군 선영" },
@@ -271,41 +264,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 공지사항 + 연락 */}
+      {/* 연락 */}
       <section className="bg-[var(--color-primary-tint)]">
-        <div className="mx-auto max-w-7xl px-6 py-20 grid lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2">
-            <div className="flex items-end justify-between mb-6">
-              <SectionTitle eyebrow="Notice" title="공지사항" />
-              <Link
-                href="/support/notice"
-                className="text-sm text-[var(--color-primary)] font-medium hover:text-[var(--color-accent)]"
-              >
-                더보기 →
-              </Link>
-            </div>
-            <ul className="card divide-y divide-[var(--color-border)]">
-              {NOTICES.map((n, i) => (
-                <li key={i}>
-                  <Link
-                    href="/support/notice"
-                    className="flex items-center justify-between gap-4 px-5 py-4 hover:bg-[var(--color-primary-tint)]"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span className="text-[10px] tracking-widest px-2 py-0.5 bg-[var(--color-primary)] text-white uppercase">
-                        {n.tag}
-                      </span>
-                      <span className="truncate text-sm md:text-base">{n.title}</span>
-                    </div>
-                    <span className="text-xs text-[var(--color-fg-muted)] shrink-0">
-                      {n.date}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+        <div className="mx-auto max-w-2xl px-6 py-20">
           <div className="card p-7 bg-[var(--color-primary)] text-white border-0">
             <div className="text-[var(--color-accent-soft)] text-xs tracking-[0.3em] uppercase mb-3">
               Contact
