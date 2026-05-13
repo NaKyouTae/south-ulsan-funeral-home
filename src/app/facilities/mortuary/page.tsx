@@ -12,7 +12,7 @@ export default function MortuaryPage() {
         description="고인이 가장 평안하게 머무르실 수 있도록 최적의 환경을 유지합니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "시설안내" }, { label: "안치실" }]}
       />
-      <section className="mx-auto max-w-3xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <Prose>
           <h3>안치실 운영</h3>
           <ul>

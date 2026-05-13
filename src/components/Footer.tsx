@@ -2,8 +2,10 @@ import Link from "next/link";
 import { NAV, SITE } from "@/lib/site";
 
 export default function Footer() {
+  const mapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(SITE.address)}`;
+
   return (
-    <footer className="mt-16 bg-[var(--color-primary)] text-white/80">
+    <footer className="bg-[var(--color-primary)] text-white/80">
       {/* 긴급 상담 배너 */}
       <div className="border-b border-white/10">
         <div className="mx-auto max-w-7xl px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -53,6 +55,17 @@ export default function Footer() {
             <div>
               주소 {SITE.address} &nbsp;|&nbsp; 대표번호 {SITE.phone} &nbsp;|&nbsp; FAX{" "}
               {SITE.fax}
+            </div>
+            <div>
+              찾아오는길{" "}
+              <a
+                href={mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline transition-colors hover:text-[var(--color-accent-soft)]"
+              >
+                네이버 지도에서 보기
+              </a>
             </div>
             <div>
               사업자등록번호 {SITE.businessNumber} &nbsp;|&nbsp; 이메일 {SITE.email}

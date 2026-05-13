@@ -12,7 +12,7 @@ export default function EtiquettePage() {
         description="장례에 임하실 때 지키시면 좋은 예절을 안내해드립니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "장례안내" }, { label: "상복·예절" }]}
       />
-      <section className="mx-auto max-w-3xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <Prose>
           <h3>상주의 복장</h3>
           <ul>

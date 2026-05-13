@@ -47,13 +47,6 @@ const QUICK_LINKS = [
   },
 ];
 
-const NOTICES = [
-  { tag: "공지", title: "추석 연휴 빈소 운영 안내", date: "2026.05.08" },
-  { tag: "공지", title: "주차장 임시 운영 변경 안내", date: "2026.04.22" },
-  { tag: "안내", title: "장례용품 가격 변경 안내", date: "2026.04.10" },
-  { tag: "공지", title: "개인정보 처리방침 개정 안내", date: "2026.03.15" },
-];
-
 const ROOMS = [
   { name: "1호실", status: "사용중", deceased: "故 김ㅇㅇ", chief: "김ㅇㅇ", departure: "05.12 06:30", site: "울산하늘공원" },
   { name: "2호실", status: "사용중", deceased: "故 이ㅇㅇ", chief: "이ㅇㅇ", departure: "05.12 08:00", site: "울주군 선영" },
@@ -82,7 +75,7 @@ export default function HomePage() {
           </div>
           <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight tracking-tight">
             정성으로 모시는<br />
-            마지막 길, <span className="text-[var(--color-accent-soft)]">남울산</span> 입니다
+            마지막 길, <span className="text-[var(--color-accent-soft)]">남울산</span>입니다
           </h1>
           <p className="mt-7 max-w-xl text-white/75 text-base md:text-lg leading-relaxed">
             한 분의 떠나심을 가장 깊이 있는 예의로 모시겠습니다.
@@ -141,7 +134,7 @@ export default function HomePage() {
       {/* 빈소 현황 */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-20">
-          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
+          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
             <SectionTitle
               eyebrow="Funeral Status"
               title="빈소 현황"
@@ -154,7 +147,42 @@ export default function HomePage() {
               전체 부고 보기 →
             </Link>
           </div>
-          <div className="overflow-x-auto card">
+          <div className="space-y-4 md:hidden">
+            {ROOMS.map((r) => (
+              <article key={r.name} className="card p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <div className="font-serif text-lg font-bold text-[var(--color-primary)]">{r.name}</div>
+                    <div className="mt-1 text-sm text-[var(--color-fg)]">{r.deceased}</div>
+                  </div>
+                  <span
+                    className={
+                      r.status === "사용중"
+                        ? "inline-block rounded-sm px-2 py-1 text-xs bg-[var(--color-primary)] text-white"
+                        : "inline-block rounded-sm px-2 py-1 text-xs bg-[var(--color-accent-soft)]/30 text-[var(--color-accent)]"
+                    }
+                  >
+                    {r.status}
+                  </span>
+                </div>
+                <dl className="mt-4 space-y-2 text-sm">
+                  <div className="flex justify-between gap-4">
+                    <dt className="shrink-0 text-[var(--color-fg-muted)]">상주</dt>
+                    <dd className="text-right text-[var(--color-fg)]">{r.chief}</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="shrink-0 text-[var(--color-fg-muted)]">발인일시</dt>
+                    <dd className="text-right text-[var(--color-fg)]">{r.departure}</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="shrink-0 text-[var(--color-fg-muted)]">장지</dt>
+                    <dd className="text-right text-[var(--color-fg)] break-keep">{r.site}</dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
+          </div>
+          <div className="hidden overflow-x-auto card md:block">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-[var(--color-primary)] text-white text-left">
@@ -197,14 +225,14 @@ export default function HomePage() {
       </section>
 
       {/* 우리의 약속 */}
-      <section>
+      <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 py-24">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
               <SectionTitle
                 eyebrow="Our Promise"
                 title="가족의 마음으로, 한 분 한 분 정성껏"
-                description="남울산 장례식장은 이용자의 슬픔을 헤아리는 마음으로, 정중하고 합리적인 장례 문화를 만들어 갑니다."
+                description="남울산전문장례식장은 이용자의 슬픔을 헤아리는 마음으로, 정중하고 합리적인 장례 문화를 만들어 갑니다."
               />
               <ul className="mt-8 space-y-5">
                 {[
@@ -244,7 +272,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative hidden lg:block">
               <div className="aspect-[4/5] bg-[var(--color-primary)] relative overflow-hidden">
                 <div
                   aria-hidden
@@ -271,75 +299,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 공지사항 + 연락 */}
-      <section className="bg-[var(--color-primary-tint)]">
-        <div className="mx-auto max-w-7xl px-6 py-20 grid lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2">
-            <div className="flex items-end justify-between mb-6">
-              <SectionTitle eyebrow="Notice" title="공지사항" />
-              <Link
-                href="/support/notice"
-                className="text-sm text-[var(--color-primary)] font-medium hover:text-[var(--color-accent)]"
-              >
-                더보기 →
-              </Link>
-            </div>
-            <ul className="card divide-y divide-[var(--color-border)]">
-              {NOTICES.map((n, i) => (
-                <li key={i}>
-                  <Link
-                    href="/support/notice"
-                    className="flex items-center justify-between gap-4 px-5 py-4 hover:bg-[var(--color-primary-tint)]"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span className="text-[10px] tracking-widest px-2 py-0.5 bg-[var(--color-primary)] text-white uppercase">
-                        {n.tag}
-                      </span>
-                      <span className="truncate text-sm md:text-base">{n.title}</span>
-                    </div>
-                    <span className="text-xs text-[var(--color-fg-muted)] shrink-0">
-                      {n.date}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="card p-7 bg-[var(--color-primary)] text-white border-0">
-            <div className="text-[var(--color-accent-soft)] text-xs tracking-[0.3em] uppercase mb-3">
-              Contact
-            </div>
-            <div className="font-serif text-xl font-bold mb-6 leading-snug">
-              궁금한 점이 있으시면<br />언제든 연락주세요
-            </div>
-            <dl className="space-y-3 text-sm">
-              <div className="flex justify-between gap-4 border-b border-white/15 pb-3">
-                <dt className="text-white/60">대표번호</dt>
-                <dd className="font-medium">{SITE.phone}</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-b border-white/15 pb-3">
-                <dt className="text-white/60">긴급상담</dt>
-                <dd className="font-medium">{SITE.phoneEmergency}</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-b border-white/15 pb-3">
-                <dt className="text-white/60">운영시간</dt>
-                <dd className="font-medium">{SITE.hours}</dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt className="text-white/60">주소</dt>
-                <dd className="font-medium text-right">{SITE.address}</dd>
-              </div>
-            </dl>
-            <Link
-              href="/support/contact"
-              className="mt-7 inline-flex items-center justify-center w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-soft)] text-[var(--color-primary)] py-3 rounded-sm font-bold"
-            >
-              1:1 문의하기
-            </Link>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

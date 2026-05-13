@@ -1,22 +1,25 @@
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import SectionTitle from "@/components/SectionTitle";
 import { SITE } from "@/lib/site";
 
 export const metadata = { title: "오시는 길" };
 
+const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(SITE.address)}`;
+
 const TRANSPORT = [
   {
     label: "자가용",
     items: [
-      "경부고속도로 → 울산IC에서 14번 국도 진입",
-      "장례식장 정문 진입 후 지하주차장 이용 (200대 규모)",
+      `${SITE.address} 입력 후 방문`,
+      "장례식장 정문 진입 후 주차장 이용",
     ],
   },
   {
     label: "버스",
     items: [
-      "간선버스 401, 402, 715번 → 남울산장례식장 정류장 하차",
-      "지선버스 124, 217번 → 남울산병원 입구 하차 후 도보 3분",
+      "온산읍 덕신권 버스 노선 이용 후 덕신외로 인근 정류장에서 하차",
+      "방문 전 최신 버스 노선과 정류장명은 지도 앱에서 확인해 주세요",
     ],
   },
   {
@@ -39,23 +42,29 @@ export default function LocationPage() {
       />
 
       <section className="mx-auto max-w-7xl px-6 py-16">
-        {/* 지도 영역 (placeholder) */}
         <div className="card overflow-hidden">
-          <div className="aspect-[16/7] bg-[var(--color-primary-tint)] flex items-center justify-center text-[var(--color-primary)]">
-            <div className="text-center">
-              <div className="font-serif text-3xl">📍</div>
-              <div className="mt-2 font-medium">{SITE.address}</div>
-              <div className="mt-1 text-xs text-[var(--color-fg-muted)]">
-                * 지도 영역 (네이버/카카오 지도 임베드 가능)
-              </div>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[var(--color-border)]">
+          <a
+            href={naverMapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block aspect-[16/7] min-h-[320px] overflow-hidden bg-[var(--color-primary-tint)]"
+          >
+            <Image
+              src="/naver-map-preview.png"
+              alt={`${SITE.name} 지도 미리보기`}
+              fill
+              sizes="(min-width: 1024px) 1120px, 100vw"
+              className="object-cover transition-transform duration-300 group-hover:scale-[1.01]"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent" />
+          </a>
+          <div className="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[var(--color-border)]">
             <div className="p-6">
               <div className="text-xs tracking-widest text-[var(--color-accent)] uppercase">
                 Address
               </div>
               <div className="mt-2 font-medium">{SITE.address}</div>
+              <div className="mt-1 text-sm text-[var(--color-fg-muted)]">우편번호 {SITE.postalCode}</div>
             </div>
             <div className="p-6">
               <div className="text-xs tracking-widest text-[var(--color-accent)] uppercase">
@@ -69,11 +78,30 @@ export default function LocationPage() {
               </div>
               <div className="mt-2 font-medium">{SITE.hours}</div>
             </div>
+            <div className="p-6">
+              <div className="text-xs tracking-widest text-[var(--color-accent)] uppercase">
+                Map Links
+              </div>
+              <div className="mt-2 flex flex-wrap gap-2 text-sm">
+                <a
+                  href={naverMapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-sm border border-[var(--color-border)] px-3 py-2 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
+                >
+                  네이버지도
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="mt-16">
-          <SectionTitle eyebrow="Transport" title="교통편 안내" />
+          <SectionTitle
+            eyebrow="Transport"
+            title="교통편 안내"
+            description={`${SITE.address} 기준으로 방문 경로를 안내해드립니다.`}
+          />
           <div className="mt-8 grid md:grid-cols-3 gap-6">
             {TRANSPORT.map((t) => (
               <div key={t.label} className="card p-7">

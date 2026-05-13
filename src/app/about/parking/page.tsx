@@ -11,7 +11,7 @@ export default function ParkingPage() {
         title="주차안내"
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "장례식장 안내" }, { label: "주차안내" }]}
       />
-      <section className="mx-auto max-w-3xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid grid-cols-3 gap-3 mb-10">
           {[
             { l: "주차대수", v: "200대" },

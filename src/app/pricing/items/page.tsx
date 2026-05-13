@@ -30,7 +30,7 @@ export default function ItemsPricingPage() {
         description="수의·관·봉안함 등 주요 장례용품의 표준 가격을 안내합니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "이용요금" }, { label: "장례용품" }]}
       />
-      <section className="mx-auto max-w-5xl px-6 py-16 space-y-10">
+      <section className="mx-auto max-w-7xl px-6 py-16 space-y-10">
         <PriceTable caption="수의" rows={SHROUDS} />
         <PriceTable caption="관" rows={COFFINS} />
         <PriceTable caption="봉안함" rows={URNS} />

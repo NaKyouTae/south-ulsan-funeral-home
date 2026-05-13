@@ -38,7 +38,7 @@ export default function FaqPage() {
         description="이용자분들이 자주 문의하시는 내용을 정리했습니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "고객센터" }, { label: "자주묻는 질문" }]}
       />
-      <section className="mx-auto max-w-3xl px-6 py-16 space-y-3">
+      <section className="mx-auto max-w-7xl px-6 py-16 space-y-3">
         {FAQS.map((f, i) => (
           <details
             key={i}

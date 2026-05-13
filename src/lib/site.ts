@@ -1,11 +1,14 @@
 export const SITE = {
-  name: "남울산 장례식장",
+  name: "남울산전문장례식장",
   nameEn: "South Ulsan Funeral Home",
   tagline: "정성으로 모시는 마지막 길",
   phone: "052-000-0000",
   phoneEmergency: "052-000-0001",
   fax: "052-000-0002",
-  address: "울산광역시 남구 OO로 000",
+  address: "울산광역시 울주군 온산읍 덕신외로 360",
+  postalCode: "44999",
+  lat: 35.4325223,
+  lng: 129.3261755,
   email: "info@south-ulsan-funeral.kr",
   businessNumber: "000-00-00000",
   hours: "24시간 연중무휴",
@@ -25,7 +28,6 @@ export const NAV: NavItem[] = [
       { label: "인사말", href: "/about/greeting" },
       { label: "오시는 길", href: "/about/location" },
       { label: "주차안내", href: "/about/parking" },
-      { label: "연혁", href: "/about/history" },
     ],
   },
   {
@@ -58,20 +60,10 @@ export const NAV: NavItem[] = [
     ],
   },
   {
-    label: "부고·조문",
+    label: "부고안내",
     href: "/notice",
     children: [
-      { label: "부고 안내", href: "/notice/obituary" },
-      { label: "온라인 조문", href: "/notice/online" },
-    ],
-  },
-  {
-    label: "고객센터",
-    href: "/support",
-    children: [
-      { label: "공지사항", href: "/support/notice" },
-      { label: "자주묻는 질문", href: "/support/faq" },
-      { label: "1:1 문의", href: "/support/contact" },
+      { label: "부고안내", href: "/notice/obituary" },
     ],
   },
 ];

@@ -20,14 +20,19 @@ const notoSerif = Noto_Serif_KR({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://south-ulsan-funeral.kr"),
+  icons: {
+    icon: "/site-logo.png",
+    shortcut: "/site-logo.png",
+    apple: "/site-logo.png",
+  },
   title: {
-    default: "남울산 장례식장 | 정성으로 모시는 마지막 길",
-    template: "%s | 남울산 장례식장",
+    default: "남울산전문장례식장 | 정성으로 모시는 마지막 길",
+    template: "%s | 남울산전문장례식장",
   },
   description:
-    "고인의 마지막 길을 정성으로 모시는 남울산 장례식장입니다. 빈소·접객실·주차장 등 편의시설과 전문 장례지도사가 24시간 상주합니다.",
+    "고인의 마지막 길을 정성으로 모시는 남울산전문장례식장입니다. 빈소·접객실·주차장 등 편의시설과 전문 장례지도사가 24시간 상주합니다.",
   keywords: [
-    "남울산 장례식장",
+    "남울산전문장례식장",
     "울산 장례식장",
     "장례절차",
     "빈소",
@@ -35,8 +40,8 @@ export const metadata: Metadata = {
     "조문",
   ],
   openGraph: {
-    title: "남울산 장례식장",
-    description: "정성으로 모시는 마지막 길, 남울산 장례식장",
+    title: "남울산전문장례식장",
+    description: "정성으로 모시는 마지막 길, 남울산전문장례식장",
     type: "website",
     locale: "ko_KR",
   },

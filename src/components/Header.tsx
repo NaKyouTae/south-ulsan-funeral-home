@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { NAV, SITE } from "@/lib/site";
 
@@ -9,6 +10,19 @@ export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!open) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[var(--color-border)]">
@@ -34,8 +48,14 @@ export default function Header() {
         onMouseLeave={() => setHovered(null)}
       >
         <Link href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full border-2 border-[var(--color-primary)] flex items-center justify-center">
-            <span className="font-serif text-[var(--color-primary)] text-lg font-bold">南</span>
+          <div className="relative h-11 w-11 overflow-hidden rounded-full border border-[var(--color-border)] bg-white">
+            <Image
+              src="/site-logo.png"
+              alt={`${SITE.name} 로고`}
+              fill
+              sizes="44px"
+              className="object-contain p-1.5"
+            />
           </div>
           <div className="leading-tight">
             <div className="font-serif text-lg font-bold text-[var(--color-primary)]">
@@ -48,20 +68,20 @@ export default function Header() {
         </Link>
 
         {/* 데스크탑 네비 */}
-        <nav className="hidden lg:flex items-center gap-2">
+        <nav className="hidden h-full lg:flex items-stretch gap-2 self-stretch">
           {NAV.map((item) => {
             const active =
               pathname === item.href || pathname.startsWith(item.href + "/");
             return (
               <div
                 key={item.href}
-                className="relative"
+                className="relative h-full"
                 onMouseEnter={() => setHovered(item.href)}
               >
                 <Link
                   href={item.href}
                   data-active={active}
-                  className="nav-link block px-4 py-3 text-sm font-medium text-[var(--color-fg)]"
+                  className="nav-link flex h-full items-center px-4 text-sm font-medium text-[var(--color-fg)]"
                 >
                   {item.label}
                 </Link>
@@ -122,8 +142,8 @@ export default function Header() {
 
       {/* 모바일 메뉴 */}
       {open && (
-        <div className="lg:hidden border-t border-[var(--color-border)] bg-white">
-          <div className="max-h-[70vh] overflow-y-auto px-6 py-4">
+        <div className="fixed inset-x-0 top-20 bottom-0 z-40 border-t border-[var(--color-border)] bg-white lg:hidden">
+          <div className="flex h-full flex-col overflow-y-auto px-6 py-4">
             {NAV.map((item) => (
               <div key={item.href} className="py-3 border-b border-[var(--color-border)] last:border-0">
                 <Link
@@ -151,7 +171,7 @@ export default function Header() {
             ))}
             <a
               href={`tel:${SITE.phone}`}
-              className="mt-4 btn-primary w-full"
+              className="mt-6 btn-primary w-full"
             >
               {SITE.phone} 전화 상담
             </a>

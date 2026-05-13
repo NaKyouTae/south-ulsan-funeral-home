@@ -1,4 +1,4 @@
-# 남울산 장례식장 (South Ulsan Funeral Home)
+# 남울산전문장례식장 (South Ulsan Funeral Home)
 
 Next.js 16 (App Router) 기반의 장례식장 공식 홈페이지 프로젝트입니다.
 

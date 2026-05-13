@@ -1,7 +1,6 @@
-import Link from "next/link";
 import PageHero from "@/components/PageHero";
 
-export const metadata = { title: "부고 안내" };
+export const metadata = { title: "부고안내" };
 
 const OBITUARIES = [
   { id: 1, room: "1호실", deceased: "故 김ㅇㅇ", chief: "김ㅇㅇ 외 3인", departure: "2026.05.12 06:30", site: "울산하늘공원" },
@@ -14,11 +13,11 @@ export default function ObituaryPage() {
     <>
       <PageHero
         eyebrow="Obituary"
-        title="부고 안내"
+        title="부고안내"
         description="현재 모셔지고 있는 고인의 부고를 안내해드립니다."
-        breadcrumbs={[{ label: "홈", href: "/" }, { label: "부고·조문" }, { label: "부고 안내" }]}
+        breadcrumbs={[{ label: "홈", href: "/" }, { label: "부고안내" }, { label: "부고안내" }]}
       />
-      <section className="mx-auto max-w-5xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="space-y-4">
           {OBITUARIES.map((o) => (
             <article
@@ -47,12 +46,6 @@ export default function ObituaryPage() {
                   </div>
                 </div>
               </div>
-              <Link
-                href="/notice/online"
-                className="btn-outline text-sm whitespace-nowrap"
-              >
-                온라인 조문 →
-              </Link>
             </article>
           ))}
         </div>

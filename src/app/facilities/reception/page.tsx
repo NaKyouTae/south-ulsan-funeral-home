@@ -12,7 +12,7 @@ export default function ReceptionPage() {
         description="조문객을 정중히 맞이할 수 있도록 쾌적한 접객실을 운영합니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "시설안내" }, { label: "접객실" }]}
       />
-      <section className="mx-auto max-w-3xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <Prose>
           <h3>접객실 시설</h3>
           <ul>

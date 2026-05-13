@@ -13,7 +13,7 @@ export default function AfterDeathPage() {
         description="임종 직후 가족이 가장 먼저 해야 할 일들을 안내해드립니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "장례안내" }, { label: "임종 후 절차" }]}
       />
-      <section className="mx-auto max-w-3xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="card p-7 bg-[var(--color-primary-tint)] border-[var(--color-primary)]/20 mb-10">
           <div className="text-xs tracking-widest text-[var(--color-accent)] uppercase mb-2">
             Emergency
@@ -33,7 +33,7 @@ export default function AfterDeathPage() {
           </ul>
           <h3>2. 장례식장 연락</h3>
           <ul>
-            <li>저희 남울산 장례식장으로 연락주시면 운구 차량을 즉시 보내드립니다.</li>
+            <li>저희 남울산전문장례식장으로 연락주시면 운구 차량을 즉시 보내드립니다.</li>
             <li>운구 비용·이송 거리에 대해 사전 안내해드립니다.</li>
           </ul>
           <h3>3. 운구 및 안치</h3>

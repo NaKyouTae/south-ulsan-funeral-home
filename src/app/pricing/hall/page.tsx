@@ -19,7 +19,7 @@ export default function HallPricingPage() {
         description="3일장 기준 빈소 이용료 안내입니다. 추가 비용 없이 정찰제로 운영합니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "이용요금" }, { label: "빈소 이용료" }]}
       />
-      <section className="mx-auto max-w-5xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <PriceTable caption="빈소 1일 이용료" rows={ROWS} />
         <ul className="mt-6 text-xs text-[var(--color-fg-muted)] space-y-1">
           <li>· 표시 가격은 부가세 별도 기준이며, 이용기간에 따라 합산됩니다.</li>
