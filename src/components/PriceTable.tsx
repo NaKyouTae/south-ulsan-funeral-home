@@ -10,27 +10,27 @@ export default function PriceTable({
   return (
     <div className="card overflow-hidden">
       {caption && (
-        <div className="px-6 py-4 bg-[var(--color-primary-tint)] border-b border-[var(--color-border)] font-medium text-[var(--color-primary)]">
+        <div className="bg-[var(--color-primary-tint)] border-b border-[var(--color-border)] px-6 py-5 text-[1.06rem] font-semibold text-[var(--color-primary)]">
           {caption}
         </div>
       )}
-      <table className="w-full text-sm">
+      <table className="w-full text-[1rem] md:text-[1.04rem]">
         <thead>
           <tr className="bg-[var(--color-primary)] text-white text-left">
-            <th className="py-3 px-5 font-medium">항목</th>
-            <th className="py-3 px-5 font-medium">규격·내용</th>
-            <th className="py-3 px-5 font-medium text-right">가격(원)</th>
+            <th className="px-5 py-4 font-medium">항목</th>
+            <th className="px-5 py-4 font-medium">규격·내용</th>
+            <th className="px-5 py-4 text-right font-medium">가격(원)</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((r, i) => (
             <tr key={i} className="border-t border-[var(--color-border)]">
-              <td className="py-3 px-5 font-medium align-top">{r.name}</td>
-              <td className="py-3 px-5 text-[var(--color-fg-muted)] align-top">
+              <td className="px-5 py-4 font-medium align-top">{r.name}</td>
+              <td className="px-5 py-4 text-[var(--color-fg-muted)] align-top leading-[1.8]">
                 {r.spec || "-"}
-                {r.note && <div className="text-xs mt-1">{r.note}</div>}
+                {r.note && <div className="mt-1 text-sm">{r.note}</div>}
               </td>
-              <td className="py-3 px-5 text-right font-medium align-top">{r.price}</td>
+              <td className="px-5 py-4 text-right font-medium align-top">{r.price}</td>
             </tr>
           ))}
         </tbody>

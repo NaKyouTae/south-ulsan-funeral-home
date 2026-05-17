@@ -36,9 +36,18 @@ body {
   background: var(--color-bg);
   color: var(--color-fg);
   font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.01em;
+}
+
+@media (max-width: 767px) {
+  body,
+  body * {
+    word-break: keep-all;
+  }
 }
 
 a {
@@ -70,7 +79,7 @@ a {
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 /* 메뉴 hover underline */
@@ -100,7 +109,7 @@ a {
   align-items: center;
   gap: 10px;
   color: var(--color-accent);
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
@@ -120,9 +129,11 @@ a {
   gap: 8px;
   background: var(--color-primary);
   color: #ffffff;
-  padding: 14px 28px;
+  min-height: 54px;
+  padding: 15px 30px;
   border-radius: 2px;
-  font-weight: 500;
+  font-size: 1.02rem;
+  font-weight: 600;
   transition: background 0.2s ease;
 }
 .btn-primary:hover {
@@ -135,9 +146,11 @@ a {
   gap: 8px;
   border: 1px solid var(--color-primary);
   color: var(--color-primary);
-  padding: 13px 27px;
+  min-height: 54px;
+  padding: 14px 29px;
   border-radius: 2px;
-  font-weight: 500;
+  font-size: 1.02rem;
+  font-weight: 600;
   transition: all 0.2s ease;
 }
 .btn-outline:hover {

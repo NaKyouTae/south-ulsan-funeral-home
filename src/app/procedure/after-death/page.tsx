@@ -21,9 +21,12 @@ export default function AfterDeathPage() {
           <div className="font-serif text-xl font-bold text-[var(--color-primary)]">
             임종 후 가장 먼저, {SITE.name}으로 연락주십시오.
           </div>
-          <div className="mt-2 font-serif text-2xl text-[var(--color-primary)]">
+          <a
+            href={`tel:${SITE.phoneLink}`}
+            className="mt-2 inline-block font-serif text-2xl text-[var(--color-primary)]"
+          >
             {SITE.phone}
-          </div>
+          </a>
         </div>
         <Prose>
           <h3>1. 사망진단서 또는 검안서 발급</h3>

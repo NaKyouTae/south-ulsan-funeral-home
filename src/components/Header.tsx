@@ -28,12 +28,12 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[var(--color-border)]">
       {/* 상단 유틸리티 바 */}
       <div className="hidden md:block bg-[var(--color-primary)] text-white/90">
-        <div className="mx-auto max-w-7xl px-6 flex items-center justify-between text-xs h-9">
+        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-6 text-sm">
           <div className="flex items-center gap-4">
             <span className="font-serif tracking-wider">{SITE.tagline}</span>
           </div>
           <div className="flex items-center gap-5">
-            <a href={`tel:${SITE.phone}`} className="hover:text-[var(--color-accent-soft)]">
+            <a href={`tel:${SITE.phoneLink}`} className="hover:text-[var(--color-accent-soft)]">
               상담 전화 {SITE.phone}
             </a>
             <span className="text-white/30">|</span>
@@ -44,7 +44,7 @@ export default function Header() {
 
       {/* 메인 네비 */}
       <div
-        className="mx-auto max-w-7xl px-6 flex items-center justify-between h-20"
+        className="mx-auto flex h-22 max-w-7xl items-center justify-between px-6"
         onMouseLeave={() => setHovered(null)}
       >
         <Link href="/" className="flex items-center gap-3">
@@ -58,17 +58,17 @@ export default function Header() {
             />
           </div>
           <div className="leading-tight">
-            <div className="font-serif text-lg font-bold text-[var(--color-primary)]">
+            <div className="font-serif text-xl font-bold text-[var(--color-primary)] md:text-2xl">
               {SITE.name}
             </div>
-            <div className="text-[11px] tracking-widest text-[var(--color-fg-muted)] uppercase">
+            <div className="text-xs tracking-widest text-[var(--color-fg-muted)] uppercase">
               {SITE.nameEn}
             </div>
           </div>
         </Link>
 
         {/* 데스크탑 네비 */}
-        <nav className="hidden h-full lg:flex items-stretch gap-2 self-stretch">
+        <nav className="hidden h-full lg:flex items-stretch gap-5 self-stretch">
           {NAV.map((item) => {
             const active =
               pathname === item.href || pathname.startsWith(item.href + "/");
@@ -81,17 +81,17 @@ export default function Header() {
                 <Link
                   href={item.href}
                   data-active={active}
-                  className="nav-link flex h-full items-center px-4 text-sm font-medium text-[var(--color-fg)]"
+                  className="nav-link flex h-full items-center px-5 text-base font-medium text-[var(--color-fg)] xl:text-[1.05rem]"
                 >
                   {item.label}
                 </Link>
                 {item.children && hovered === item.href && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 min-w-[180px] bg-white border border-[var(--color-border)] shadow-md py-2">
+                  <div className="absolute top-full left-1/2 min-w-[200px] -translate-x-1/2 border border-[var(--color-border)] bg-white py-2 shadow-md">
                     {item.children.map((c) => (
                       <Link
                         key={c.href}
                         href={c.href}
-                        className="block px-5 py-2 text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-tint)]"
+                        className="block px-5 py-2.5 text-[1rem] text-[var(--color-fg-muted)] hover:bg-[var(--color-primary-tint)] hover:text-[var(--color-primary)]"
                       >
                         {c.label}
                       </Link>
@@ -105,13 +105,13 @@ export default function Header() {
 
         <div className="hidden lg:flex items-center gap-3">
           <a
-            href={`tel:${SITE.phone}`}
+            href={`tel:${SITE.phoneLink}`}
             className="text-right leading-tight"
           >
-            <div className="text-[11px] tracking-widest text-[var(--color-fg-muted)] uppercase">
+            <div className="text-xs tracking-widest text-[var(--color-fg-muted)] uppercase">
               24h Contact
             </div>
-            <div className="font-serif text-lg font-bold text-[var(--color-primary)]">
+            <div className="font-serif text-xl font-bold text-[var(--color-primary)]">
               {SITE.phone}
             </div>
           </a>
@@ -143,23 +143,23 @@ export default function Header() {
       {/* 모바일 메뉴 */}
       {open && (
         <div className="fixed inset-x-0 top-20 bottom-0 z-40 border-t border-[var(--color-border)] bg-white lg:hidden">
-          <div className="flex h-full flex-col overflow-y-auto px-6 py-4">
+          <div className="flex h-full flex-col overflow-y-auto px-6 py-5">
             {NAV.map((item) => (
-              <div key={item.href} className="py-3 border-b border-[var(--color-border)] last:border-0">
+              <div key={item.href} className="border-b border-[var(--color-border)] py-4 last:border-0">
                 <Link
                   href={item.href}
-                  className="block font-medium text-[var(--color-primary)]"
+                  className="block text-xl font-medium text-[var(--color-primary)]"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
                 </Link>
                 {item.children && (
-                  <div className="mt-2 grid grid-cols-2 gap-1">
+                  <div className="mt-3 grid grid-cols-2 gap-2">
                     {item.children.map((c) => (
                       <Link
                         key={c.href}
                         href={c.href}
-                        className="text-sm text-[var(--color-fg-muted)] py-1.5"
+                        className="py-2 text-[1.05rem] text-[var(--color-fg-muted)]"
                         onClick={() => setOpen(false)}
                       >
                         · {c.label}
@@ -170,7 +170,7 @@ export default function Header() {
               </div>
             ))}
             <a
-              href={`tel:${SITE.phone}`}
+              href={`tel:${SITE.phoneLink}`}
               className="mt-6 btn-primary w-full"
             >
               {SITE.phone} 전화 상담

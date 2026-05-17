@@ -4,10 +4,11 @@ import SectionTitle from "@/components/SectionTitle";
 export const metadata = { title: "빈소" };
 
 const ROOMS = [
-  { name: "특실", area: "165㎡ (50평)", capacity: "120명", features: ["프리미엄 접객실", "전용 휴게공간", "독립 화장실"] },
-  { name: "대실 (1·2호실)", area: "99㎡ (30평)", capacity: "80명", features: ["넓은 접객실", "별도 분향소"] },
-  { name: "중실 (3·4호실)", area: "66㎡ (20평)", capacity: "50명", features: ["접객실 포함", "기본 분향소"] },
-  { name: "소실 (5·6호실)", area: "49㎡ (15평)", capacity: "30명", features: ["가족 중심 빈소"] },
+  { name: "VIP101호", area: "165㎡ (50평)", capacity: "120명", features: ["프리미엄 접객실", "전용 휴게공간", "독립 화장실"] },
+  { name: "VIP301호", area: "99㎡ (30평)", capacity: "80명", features: ["넓은 접객실", "별도 분향소"] },
+  { name: "VIP302호", area: "99㎡ (30평)", capacity: "80명", features: ["넓은 접객실", "별도 분향소"] },
+  { name: "VIP401호", area: "66㎡ (20평)", capacity: "50명", features: ["접객실 포함", "기본 분향소"] },
+  { name: "VIP402호", area: "66㎡ (20평)", capacity: "50명", features: ["접객실 포함", "기본 분향소"] },
 ];
 
 export default function FuneralHallPage() {

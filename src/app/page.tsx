@@ -1,238 +1,142 @@
+import Image from "next/image";
 import Link from "next/link";
+import MobileRoomCarousel from "@/components/MobileRoomCarousel";
 import SectionTitle from "@/components/SectionTitle";
 import { SITE } from "@/lib/site";
 
-const QUICK_LINKS = [
-  {
-    title: "장례절차",
-    desc: "임종부터 발인까지 단계별 안내",
-    href: "/procedure/process",
-    icon: (
-      <path d="M9 11H7v9h10v-9h-2M9 11V7a3 3 0 0 1 6 0v4M9 11h6" />
-    ),
-  },
-  {
-    title: "오시는 길",
-    desc: "주차·대중교통 안내",
-    href: "/about/location",
-    icon: (
-      <>
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-        <circle cx="12" cy="10" r="3" />
-      </>
-    ),
-  },
-  {
-    title: "시설안내",
-    desc: "빈소·접객실·안치실",
-    href: "/facilities/funeral-hall",
-    icon: (
-      <>
-        <path d="M3 21h18" />
-        <path d="M5 21V7l7-4 7 4v14" />
-        <path d="M9 21v-6h6v6" />
-      </>
-    ),
-  },
-  {
-    title: "이용요금",
-    desc: "투명한 요금 안내",
-    href: "/pricing/hall",
-    icon: (
-      <>
-        <line x1="12" y1="1" x2="12" y2="23" />
-        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-      </>
-    ),
-  },
+const HERO_LINKS = [
+  { title: "오시는길", href: "/about/location" },
+  { title: "시설안내", href: "/facilities/funeral-hall" },
 ];
 
 const ROOMS = [
-  { name: "1호실", status: "사용중", deceased: "故 김ㅇㅇ", chief: "김ㅇㅇ", departure: "05.12 06:30", site: "울산하늘공원" },
-  { name: "2호실", status: "사용중", deceased: "故 이ㅇㅇ", chief: "이ㅇㅇ", departure: "05.12 08:00", site: "울주군 선영" },
-  { name: "3호실", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
-  { name: "4호실", status: "사용중", deceased: "故 박ㅇㅇ", chief: "박ㅇㅇ", departure: "05.13 07:00", site: "양산영락공원" },
-  { name: "특실", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
+  { name: "VIP101호", status: "사용중", deceased: "故 김ㅇㅇ", chief: "김ㅇㅇ", departure: "05.12 06:30", site: "울산하늘공원" },
+  { name: "VIP301호", status: "사용중", deceased: "故 이ㅇㅇ", chief: "이ㅇㅇ", departure: "05.12 08:00", site: "울주군 선영" },
+  { name: "VIP302호", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
+  { name: "VIP401호", status: "사용중", deceased: "故 박ㅇㅇ", chief: "박ㅇㅇ", departure: "05.13 07:00", site: "양산영락공원" },
+  { name: "VIP402호", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
 ];
 
 export default function HomePage() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative">
+      <section className="relative overflow-hidden bg-[var(--color-primary)]">
         <div className="absolute inset-0 bg-[var(--color-primary)]" />
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-building.png"
+            alt="남울산전문장례식장 전경"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-20"
+          />
+        </div>
         <div
           aria-hidden
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0"
           style={{
-            backgroundImage:
-              "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 40%, rgba(181,137,74,0.18) 100%)",
+            background:
+              "linear-gradient(110deg, rgba(18,38,33,0.92) 0%, rgba(18,38,33,0.82) 42%, rgba(18,38,33,0.72) 100%)",
           }}
         />
-        <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-36 text-white">
-          <div className="text-[var(--color-accent-soft)] text-xs tracking-[0.4em] uppercase mb-6">
-            South Ulsan Funeral Home
-          </div>
-          <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-            정성으로 모시는<br />
-            마지막 길, <span className="text-[var(--color-accent-soft)]">남울산</span>입니다
-          </h1>
-          <p className="mt-7 max-w-xl text-white/75 text-base md:text-lg leading-relaxed">
-            한 분의 떠나심을 가장 깊이 있는 예의로 모시겠습니다.
-            <br />
-            전문 장례지도사가 24시간 상주하며, 가족의 시간을 정성껏 지켜드립니다.
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3">
-            <a
-              href={`tel:${SITE.phone}`}
-              className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-soft)] text-[var(--color-primary)] px-8 py-4 rounded-sm font-bold"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
-              </svg>
-              24시간 상담 {SITE.phone}
-            </a>
-            <Link
-              href="/procedure/process"
-              className="inline-flex items-center justify-center gap-2 border border-white/40 hover:bg-white hover:text-[var(--color-primary)] text-white px-8 py-4 rounded-sm font-medium transition-colors"
-            >
-              장례절차 안내
-              <span aria-hidden>→</span>
-            </Link>
-          </div>
-        </div>
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage:
+              "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 38%, rgba(181,137,74,0.18) 100%)",
+          }}
+        />
 
-        {/* 빠른 메뉴 - hero 하단 카드 */}
-        <div className="relative mx-auto max-w-7xl px-6 -mt-10 pb-14 md:pb-20">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-            {QUICK_LINKS.map((q) => (
-              <Link
-                key={q.href}
-                href={q.href}
-                className="group bg-white border border-[var(--color-border)] p-5 md:p-7 hover:border-[var(--color-primary)] transition-colors"
-              >
-                <div className="w-11 h-11 mb-4 rounded-full bg-[var(--color-primary-tint)] text-[var(--color-primary)] flex items-center justify-center">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    {q.icon}
-                  </svg>
+        <div className="relative mx-auto box-border h-[calc(100dvh-5.5rem)] min-h-fit max-w-7xl px-6 py-[52px] md:h-[calc(100vh-8rem)] md:py-[102px] lg:h-[calc(100dvh-8rem)] lg:py-[102px]">
+          <div className="flex h-full flex-col justify-around text-white">
+            <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-start lg:gap-8">
+              <div className="max-w-4xl pt-0 md:pt-4">
+                <div className="text-[14px] uppercase tracking-[0.42em] text-[var(--color-accent-soft)]">
+                  South Ulsan Funeral Home
                 </div>
-                <div className="font-serif text-lg font-bold text-[var(--color-fg)] group-hover:text-[var(--color-primary)]">
-                  {q.title}
-                </div>
-                <div className="mt-1 text-sm text-[var(--color-fg-muted)]">
-                  {q.desc}
-                </div>
-                <div className="mt-4 inline-flex items-center text-xs text-[var(--color-accent)] font-medium">
-                  바로가기 →
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+                <h1 className="mt-4 font-serif text-[38px] font-bold leading-[1.28] tracking-tight md:mt-8 md:text-[52px] md:leading-[1.4]">
+                  정성으로 모시는
+                  <br />
+                  마지막 길, <span className="text-[var(--color-accent-soft)]">남울산</span>입니다
+                </h1>
+              </div>
 
-      {/* 빈소 현황 */}
-      <section className="bg-paper">
-        <div className="mx-auto max-w-7xl px-6 py-20">
-          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
-            <SectionTitle
-              eyebrow="Funeral Status"
-              title="빈소 현황"
-              description="현재 운영중인 빈소의 고인 정보와 발인 일정을 안내해드립니다."
-            />
-            <Link
-              href="/notice/obituary"
-              className="text-sm text-[var(--color-primary)] font-medium hover:text-[var(--color-accent)]"
-            >
-              전체 부고 보기 →
-            </Link>
-          </div>
-          <div className="space-y-4 md:hidden">
-            {ROOMS.map((r) => (
-              <article key={r.name} className="card p-5">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <div className="font-serif text-lg font-bold text-[var(--color-primary)]">{r.name}</div>
-                    <div className="mt-1 text-sm text-[var(--color-fg)]">{r.deceased}</div>
-                  </div>
-                  <span
-                    className={
-                      r.status === "사용중"
-                        ? "inline-block rounded-sm px-2 py-1 text-xs bg-[var(--color-primary)] text-white"
-                        : "inline-block rounded-sm px-2 py-1 text-xs bg-[var(--color-accent-soft)]/30 text-[var(--color-accent)]"
-                    }
-                  >
-                    {r.status}
-                  </span>
+              <div className="mt-3 rounded-sm border border-white/8 bg-[rgba(53,76,69,0.72)] p-2.5 shadow-[0_24px_60px_rgba(0,0,0,0.18)] backdrop-blur-sm md:p-4 lg:mt-12">
+                <div className="grid grid-cols-2 gap-3">
+                  {HERO_LINKS.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="flex min-h-[52px] items-center justify-center rounded-sm border border-white/28 px-3 text-center text-[15px] font-medium text-white transition-colors hover:border-white/55 hover:bg-white/8 md:min-h-[68px] md:px-4 md:text-base"
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
                 </div>
-                <dl className="mt-4 space-y-2 text-sm">
-                  <div className="flex justify-between gap-4">
-                    <dt className="shrink-0 text-[var(--color-fg-muted)]">상주</dt>
-                    <dd className="text-right text-[var(--color-fg)]">{r.chief}</dd>
-                  </div>
-                  <div className="flex justify-between gap-4">
-                    <dt className="shrink-0 text-[var(--color-fg-muted)]">발인일시</dt>
-                    <dd className="text-right text-[var(--color-fg)]">{r.departure}</dd>
-                  </div>
-                  <div className="flex justify-between gap-4">
-                    <dt className="shrink-0 text-[var(--color-fg-muted)]">장지</dt>
-                    <dd className="text-right text-[var(--color-fg)] break-keep">{r.site}</dd>
-                  </div>
-                </dl>
-              </article>
-            ))}
-          </div>
-          <div className="hidden overflow-x-auto card md:block">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-[var(--color-primary)] text-white text-left">
-                  <th className="py-3 px-4 font-medium">호실</th>
-                  <th className="py-3 px-4 font-medium">상태</th>
-                  <th className="py-3 px-4 font-medium">고인명</th>
-                  <th className="py-3 px-4 font-medium">상주</th>
-                  <th className="py-3 px-4 font-medium">발인일시</th>
-                  <th className="py-3 px-4 font-medium">장지</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ROOMS.map((r) => (
-                  <tr
-                    key={r.name}
-                    className="border-t border-[var(--color-border)] hover:bg-[var(--color-primary-tint)]/40"
-                  >
-                    <td className="py-3 px-4 font-medium">{r.name}</td>
-                    <td className="py-3 px-4">
-                      <span
-                        className={
-                          r.status === "사용중"
-                            ? "inline-block px-2 py-0.5 text-xs bg-[var(--color-primary)] text-white"
-                            : "inline-block px-2 py-0.5 text-xs bg-[var(--color-accent-soft)]/30 text-[var(--color-accent)]"
-                        }
-                      >
-                        {r.status}
-                      </span>
-                    </td>
-                    <td className="py-3 px-4">{r.deceased}</td>
-                    <td className="py-3 px-4">{r.chief}</td>
-                    <td className="py-3 px-4">{r.departure}</td>
-                    <td className="py-3 px-4">{r.site}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                <a
+                  href={`tel:${SITE.phoneLink}`}
+                  className="mt-2.5 inline-flex min-h-[54px] w-full items-center justify-center rounded-sm bg-[var(--color-accent)] px-3 text-center text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(181,137,74,0.2)] transition-colors hover:bg-[var(--color-accent-soft)] md:mt-3 md:min-h-[68px] md:px-4 md:text-base"
+                >
+                  24시간 상담 {SITE.phone}
+                </a>
+              </div>
+            </div>
+
+            <div className="md:mt-0 md:rounded-sm md:border md:border-white/10 md:bg-[rgba(77,94,87,0.66)] md:p-4 md:shadow-[0_18px_48px_rgba(0,0,0,0.18)] md:backdrop-blur-sm">
+              <MobileRoomCarousel rooms={ROOMS} />
+
+              <div className="hidden overflow-x-auto md:block">
+                <table className="min-w-[760px] w-full text-[14px] text-white">
+                  <thead>
+                    <tr className="border-b border-white/14 text-left text-[15px] text-white/90">
+                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">호실</th>
+                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">상태</th>
+                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">고인명</th>
+                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">상주</th>
+                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">발인일시</th>
+                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">장지</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {ROOMS.map((r) => (
+                      <tr key={r.name} className="border-t border-white/10">
+                        <td className="px-3 py-3 text-[15px] font-medium whitespace-nowrap md:px-4 md:py-3.5">{r.name}</td>
+                        <td className="px-3 py-3 md:px-4 md:py-3.5">
+                          <span
+                            className={
+                              r.status === "사용중"
+                                ? "inline-block rounded-sm bg-[var(--color-accent)] px-3 py-1 text-[12px] font-semibold text-[var(--color-primary)]"
+                                : "inline-block rounded-sm bg-white/12 px-3 py-1 text-[12px] font-semibold text-white/88"
+                            }
+                          >
+                            {r.status}
+                          </span>
+                        </td>
+                        <td className="px-3 py-3 whitespace-nowrap text-[15px] md:px-4 md:py-3.5">{r.deceased}</td>
+                        <td className="px-3 py-3 whitespace-nowrap text-[15px] md:px-4 md:py-3.5">{r.chief}</td>
+                        <td className="px-3 py-3 whitespace-nowrap text-[15px] md:px-4 md:py-3.5">{r.departure}</td>
+                        <td className="px-3 py-3 whitespace-nowrap text-[15px] md:px-4 md:py-3.5">{r.site}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 우리의 약속 */}
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 py-24">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
-            <div>
+          <div className="grid gap-14 lg:grid-cols-2 lg:items-stretch">
+            <div className="flex h-full flex-col justify-center">
               <SectionTitle
                 eyebrow="Our Promise"
-                title="가족의 마음으로, 한 분 한 분 정성껏"
+                title={<>가족의 마음으로,<br />한 분 한 분 정성껏</>}
                 description="남울산전문장례식장은 이용자의 슬픔을 헤아리는 마음으로, 정중하고 합리적인 장례 문화를 만들어 갑니다."
+                descriptionClassName="break-keep"
               />
               <ul className="mt-8 space-y-5">
                 {[
@@ -253,14 +157,12 @@ export default function HomePage() {
                   },
                 ].map((it) => (
                   <li key={it.n} className="flex gap-5">
-                    <div className="font-serif text-2xl font-bold text-[var(--color-accent)] w-12 shrink-0">
+                    <div className="w-12 shrink-0 font-serif text-2xl font-bold text-[var(--color-accent)]">
                       {it.n}
                     </div>
                     <div>
                       <div className="font-bold text-[var(--color-fg)]">{it.t}</div>
-                      <div className="mt-1 text-sm text-[var(--color-fg-muted)]">
-                        {it.d}
-                      </div>
+                      <div className="mt-1 text-sm text-[var(--color-fg-muted)]">{it.d}</div>
                     </div>
                   </li>
                 ))}
@@ -272,8 +174,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative hidden lg:block">
-              <div className="aspect-[4/5] bg-[var(--color-primary)] relative overflow-hidden">
+            <div className="relative hidden lg:block lg:h-full">
+              <div className="relative h-full min-h-[100%] overflow-hidden bg-[var(--color-primary)]">
                 <div
                   aria-hidden
                   className="absolute inset-0 opacity-30"
@@ -283,22 +185,19 @@ export default function HomePage() {
                   }}
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center px-8">
-                    <div className="font-serif text-7xl text-[var(--color-accent-soft)]">
-                      謹弔
-                    </div>
-                    <div className="mt-6 text-white/80 text-sm tracking-[0.3em] uppercase">
+                  <div className="px-8 text-center">
+                    <div className="font-serif text-7xl text-[var(--color-accent-soft)]">謹弔</div>
+                    <div className="mt-6 text-sm uppercase tracking-[0.3em] text-white/80">
                       A Quiet Farewell
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 hidden md:block w-32 h-32 border-2 border-[var(--color-accent)] -z-10" />
+              <div className="absolute -bottom-6 -right-6 hidden h-32 w-32 border-2 border-[var(--color-accent)] -z-10 md:block" />
             </div>
           </div>
         </div>
       </section>
-
     </>
   );
 }

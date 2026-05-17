@@ -3,9 +3,9 @@ import PageHero from "@/components/PageHero";
 export const metadata = { title: "부고안내" };
 
 const OBITUARIES = [
-  { id: 1, room: "1호실", deceased: "故 김ㅇㅇ", chief: "김ㅇㅇ 외 3인", departure: "2026.05.12 06:30", site: "울산하늘공원" },
-  { id: 2, room: "2호실", deceased: "故 이ㅇㅇ", chief: "이ㅇㅇ 외 2인", departure: "2026.05.12 08:00", site: "울주군 선영" },
-  { id: 3, room: "4호실", deceased: "故 박ㅇㅇ", chief: "박ㅇㅇ 외 2인", departure: "2026.05.13 07:00", site: "양산영락공원" },
+  { id: 1, room: "VIP101호", deceased: "故 김ㅇㅇ", chief: "김ㅇㅇ 외 3인", departure: "2026.05.12 06:30", site: "울산하늘공원" },
+  { id: 2, room: "VIP301호", deceased: "故 이ㅇㅇ", chief: "이ㅇㅇ 외 2인", departure: "2026.05.12 08:00", site: "울주군 선영" },
+  { id: 3, room: "VIP401호", deceased: "故 박ㅇㅇ", chief: "박ㅇㅇ 외 2인", departure: "2026.05.13 07:00", site: "양산영락공원" },
 ];
 
 export default function ObituaryPage() {

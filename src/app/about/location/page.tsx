@@ -58,7 +58,7 @@ export default function LocationPage() {
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent" />
           </a>
-          <div className="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[var(--color-border)]">
+          <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[var(--color-border)]">
             <div className="p-6">
               <div className="text-xs tracking-widest text-[var(--color-accent)] uppercase">
                 Address
@@ -77,21 +77,6 @@ export default function LocationPage() {
                 Hours
               </div>
               <div className="mt-2 font-medium">{SITE.hours}</div>
-            </div>
-            <div className="p-6">
-              <div className="text-xs tracking-widest text-[var(--color-accent)] uppercase">
-                Map Links
-              </div>
-              <div className="mt-2 flex flex-wrap gap-2 text-sm">
-                <a
-                  href={naverMapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-sm border border-[var(--color-border)] px-3 py-2 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
-                >
-                  네이버지도
-                </a>
-              </div>
             </div>
           </div>
         </div>

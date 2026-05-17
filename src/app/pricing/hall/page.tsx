@@ -4,10 +4,11 @@ import PriceTable from "@/components/PriceTable";
 export const metadata = { title: "빈소 이용료" };
 
 const ROWS = [
-  { name: "특실", spec: "165㎡ / 수용 120명 / 1일", price: "1,800,000" },
-  { name: "대실 (1·2호실)", spec: "99㎡ / 수용 80명 / 1일", price: "1,200,000" },
-  { name: "중실 (3·4호실)", spec: "66㎡ / 수용 50명 / 1일", price: "800,000" },
-  { name: "소실 (5·6호실)", spec: "49㎡ / 수용 30명 / 1일", price: "550,000" },
+  { name: "VIP101호", spec: "165㎡ / 수용 120명 / 1일", price: "1,800,000" },
+  { name: "VIP301호", spec: "99㎡ / 수용 80명 / 1일", price: "1,200,000" },
+  { name: "VIP302호", spec: "99㎡ / 수용 80명 / 1일", price: "1,200,000" },
+  { name: "VIP401호", spec: "66㎡ / 수용 50명 / 1일", price: "800,000" },
+  { name: "VIP402호", spec: "66㎡ / 수용 50명 / 1일", price: "800,000" },
 ];
 
 export default function HallPricingPage() {

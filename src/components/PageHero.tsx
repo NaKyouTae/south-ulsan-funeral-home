@@ -24,20 +24,20 @@ export default function PageHero({
       />
       <div className="relative mx-auto max-w-7xl px-6 py-20 md:py-28">
         {eyebrow && (
-          <div className="text-[var(--color-accent-soft)] text-xs tracking-[0.3em] uppercase mb-4">
+          <div className="mb-4 text-sm tracking-[0.3em] text-[var(--color-accent-soft)] uppercase">
             {eyebrow}
           </div>
         )}
-        <h1 className="font-serif text-3xl md:text-5xl font-bold tracking-tight">
+        <h1 className="font-serif text-4xl md:text-[3.5rem] font-bold tracking-tight leading-tight">
           {title}
         </h1>
         {description && (
-          <p className="mt-5 max-w-2xl text-white/75 text-base md:text-lg leading-relaxed">
+          <p className="mt-5 max-w-3xl text-white/80 text-[1.08rem] md:text-[1.2rem] leading-[1.85]">
             {description}
           </p>
         )}
         {breadcrumbs && breadcrumbs.length > 0 && (
-          <nav className="mt-8 flex items-center gap-2 text-xs text-white/60">
+          <nav className="mt-8 flex flex-wrap items-center gap-2 text-sm text-white/65">
             {breadcrumbs.map((c, i) => (
               <span key={i} className="flex items-center gap-2">
                 {c.href ? (
