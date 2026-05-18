@@ -49,8 +49,8 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative mx-auto box-border h-[calc(100dvh-5.5rem)] min-h-fit max-w-7xl px-6 py-[52px] md:h-[calc(100vh-8rem)] md:py-[102px] lg:h-[calc(100dvh-8rem)] lg:py-[102px]">
-          <div className="flex h-full flex-col justify-around text-white">
+        <div className="relative mx-auto box-border h-[calc(100dvh-5.5rem)] min-h-fit max-w-7xl px-6 py-[52px] md:h-[calc(100vh-8rem)] md:py-8 lg:h-[calc(100dvh-8rem)] lg:py-8">
+          <div className="flex h-full flex-col justify-around text-white md:justify-between">
             <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-start lg:gap-8">
               <div className="max-w-4xl pt-0 md:pt-4">
                 <div className="text-[14px] uppercase tracking-[0.42em] text-[var(--color-accent-soft)]">
