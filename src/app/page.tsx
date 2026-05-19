@@ -10,10 +10,10 @@ const HERO_LINKS = [
 ];
 
 const ROOMS = [
-  { name: "VIP101호", status: "사용중", deceased: "故 김ㅇㅇ", chief: "김ㅇㅇ", departure: "05.12 06:30", site: "울산하늘공원" },
-  { name: "VIP301호", status: "사용중", deceased: "故 이ㅇㅇ", chief: "이ㅇㅇ", departure: "05.12 08:00", site: "울주군 선영" },
+  { name: "VIP101호", status: "사용중", deceased: "故 김ㅇㅇ", chief: "김ㅇㅇ 외 2인", departure: "2026-05-18 07:00", site: "울산하늘공원(승화원) 대전현 충원" },
+  { name: "VIP301호", status: "사용중", deceased: "故 이ㅇㅇ", chief: "이ㅇㅇ · 이ㅇㅇ", departure: "2026-05-18 09:30", site: "울주군 선영" },
   { name: "VIP302호", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
-  { name: "VIP401호", status: "사용중", deceased: "故 박ㅇㅇ", chief: "박ㅇㅇ", departure: "05.13 07:00", site: "양산영락공원" },
+  { name: "VIP401호", status: "사용중", deceased: "故 박ㅇㅇ", chief: "배우자 : 김신옥 / 자 : 최현진 / 자부 : 신혜정 / 녀 : 최현숙 / 사위 : 강종구 / 손녀 : 최연우 외손자 : 강민규,강민재", departure: "2026-05-19 07:00", site: "양산영락공원" },
   { name: "VIP402호", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
 ];
 
@@ -49,8 +49,8 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative mx-auto box-border h-[calc(100dvh-5.5rem)] min-h-fit max-w-7xl px-6 py-[52px] md:h-[calc(100vh-8rem)] md:py-8 lg:h-[calc(100dvh-8rem)] lg:py-8">
-          <div className="flex h-full flex-col justify-around text-white md:justify-between">
+        <div className="relative mx-auto box-border h-fit min-h-[calc(100dvh-8rem)] max-w-7xl px-6 py-[32px] md:min-h-[calc(100vh-8rem)] md:py-8 lg:min-h-[calc(100dvh-8rem)] lg:py-8">
+          <div className="flex min-h-full flex-col justify-around text-white md:justify-between md:gap-8">
             <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-start lg:gap-8">
               <div className="max-w-4xl pt-0 md:pt-4">
                 <div className="text-[14px] uppercase tracking-[0.42em] text-[var(--color-accent-soft)]">
@@ -63,7 +63,7 @@ export default function HomePage() {
                 </h1>
               </div>
 
-              <div className="mt-3 rounded-sm border border-white/8 bg-[rgba(53,76,69,0.72)] p-2.5 shadow-[0_24px_60px_rgba(0,0,0,0.18)] backdrop-blur-sm md:p-4 lg:mt-12">
+              <div className="mt-3 rounded-sm border border-white/8 bg-[rgba(53,76,69,0.72)] p-2.5 shadow-[0_24px_60px_rgba(0,0,0,0.18)] backdrop-blur-sm md:p-4 lg:mt-[28px]">
                 <div className="grid grid-cols-2 gap-3">
                   {HERO_LINKS.map((item) => (
                     <Link
@@ -84,45 +84,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="md:mt-0 md:rounded-sm md:border md:border-white/10 md:bg-[rgba(77,94,87,0.66)] md:p-4 md:shadow-[0_18px_48px_rgba(0,0,0,0.18)] md:backdrop-blur-sm">
+            <div className="mt-8 md:mt-0">
               <MobileRoomCarousel rooms={ROOMS} />
-
-              <div className="hidden overflow-x-auto md:block">
-                <table className="min-w-[760px] w-full text-[14px] text-white">
-                  <thead>
-                    <tr className="border-b border-white/14 text-left text-[15px] text-white/90">
-                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">호실</th>
-                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">상태</th>
-                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">고인명</th>
-                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">상주</th>
-                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">발인일시</th>
-                      <th className="px-3 py-3 font-medium md:px-4 md:py-3.5">장지</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {ROOMS.map((r) => (
-                      <tr key={r.name} className="border-t border-white/10">
-                        <td className="px-3 py-3 text-[15px] font-medium whitespace-nowrap md:px-4 md:py-3.5">{r.name}</td>
-                        <td className="px-3 py-3 md:px-4 md:py-3.5">
-                          <span
-                            className={
-                              r.status === "사용중"
-                                ? "inline-block rounded-sm bg-[var(--color-accent)] px-3 py-1 text-[12px] font-semibold text-[var(--color-primary)]"
-                                : "inline-block rounded-sm bg-white/12 px-3 py-1 text-[12px] font-semibold text-white/88"
-                            }
-                          >
-                            {r.status}
-                          </span>
-                        </td>
-                        <td className="px-3 py-3 whitespace-nowrap text-[15px] md:px-4 md:py-3.5">{r.deceased}</td>
-                        <td className="px-3 py-3 whitespace-nowrap text-[15px] md:px-4 md:py-3.5">{r.chief}</td>
-                        <td className="px-3 py-3 whitespace-nowrap text-[15px] md:px-4 md:py-3.5">{r.departure}</td>
-                        <td className="px-3 py-3 whitespace-nowrap text-[15px] md:px-4 md:py-3.5">{r.site}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
             </div>
           </div>
         </div>

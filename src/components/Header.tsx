@@ -44,7 +44,7 @@ export default function Header() {
 
       {/* 메인 네비 */}
       <div
-        className="mx-auto flex h-22 max-w-7xl items-center justify-between px-6"
+        className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 md:h-22"
         onMouseLeave={() => setHovered(null)}
       >
         <Link href="/" className="flex items-center gap-3">
@@ -142,7 +142,7 @@ export default function Header() {
 
       {/* 모바일 메뉴 */}
       {open && (
-        <div className="fixed inset-x-0 top-20 bottom-0 z-40 border-t border-[var(--color-border)] bg-white lg:hidden">
+        <div className="fixed inset-x-0 top-18 bottom-0 z-40 border-t border-[var(--color-border)] bg-white md:top-20 lg:hidden">
           <div className="flex h-full flex-col overflow-y-auto px-6 py-5">
             {NAV.map((item) => (
               <div key={item.href} className="border-b border-[var(--color-border)] py-4 last:border-0">

@@ -86,14 +86,14 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
   };
 
   return (
-    <div className="relative md:hidden">
-      <div className="pointer-events-none absolute inset-y-0 left-1/2 z-10 flex w-screen -translate-x-1/2 items-center justify-between px-1">
-        <div className="pointer-events-auto">
+    <div className="relative">
+      <div className="pointer-events-none absolute inset-y-0 left-1/2 z-10 flex w-screen -translate-x-1/2 items-center justify-between px-1 md:left-0 md:w-full md:translate-x-0 md:px-0">
+        <div className="pointer-events-auto md:-translate-x-[58%]">
           <button
             type="button"
             aria-label="이전 빈소 보기"
             onClick={() => scrollByCard("prev")}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/18 bg-[rgba(22,39,34,0.76)] text-white shadow-[0_8px_20px_rgba(0,0,0,0.2)] transition-colors active:bg-white/14"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/18 bg-[rgba(22,39,34,0.76)] text-white shadow-[0_8px_20px_rgba(0,0,0,0.2)] transition-colors active:bg-white/14 md:h-11 md:w-11"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
@@ -106,12 +106,12 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
             </svg>
           </button>
         </div>
-        <div className="pointer-events-auto">
+        <div className="pointer-events-auto md:translate-x-[58%]">
           <button
             type="button"
             aria-label="다음 빈소 보기"
             onClick={() => scrollByCard("next")}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/18 bg-[rgba(22,39,34,0.76)] text-white shadow-[0_8px_20px_rgba(0,0,0,0.2)] transition-colors active:bg-white/14"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/18 bg-[rgba(22,39,34,0.76)] text-white shadow-[0_8px_20px_rgba(0,0,0,0.2)] transition-colors active:bg-white/14 md:h-11 md:w-11"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
@@ -128,39 +128,55 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
 
       <div
         ref={scrollRef}
-        className="relative left-1/2 flex w-screen -translate-x-1/2 snap-x snap-mandatory gap-3 overflow-x-auto px-6 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="relative left-1/2 flex w-screen -translate-x-1/2 snap-x snap-mandatory gap-3 overflow-x-auto px-6 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:left-0 md:w-full md:translate-x-0 md:gap-6 md:overflow-x-hidden md:px-0 lg:gap-8"
       >
         {loopRooms.map((room, index) => (
           <article
             key={`${room.name}-${index}`}
             data-room-card
-            className="w-[calc(100vw-3rem)] shrink-0 snap-center rounded-sm border border-white/14 bg-[rgba(77,94,87,0.82)] p-5 shadow-[0_18px_36px_rgba(0,0,0,0.18)]"
+            className="w-[calc(100vw-3rem)] shrink-0 snap-center rounded-sm border border-white/14 bg-[rgba(77,94,87,0.82)] p-5 shadow-[0_18px_36px_rgba(0,0,0,0.18)] md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4rem)/3)]"
           >
             <div className="flex items-start justify-between gap-3">
               <div>
                 <div className="text-[12px] uppercase tracking-[0.24em] text-white/55">
                   Room
                 </div>
-                <div className="mt-1 text-[20px] font-semibold text-white">{room.name}</div>
+                <div className="mt-1 text-[20px] font-semibold text-white md:text-[22px]">{room.name}</div>
               </div>
             </div>
 
-            <div className="mt-4 space-y-3 text-[14px] leading-[1.6] text-white/92">
-              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3">
-                <span className="shrink-0 text-white/58">고인명</span>
-                <span className="text-right font-medium text-white">{room.deceased}</span>
+            <div className="mt-5 space-y-3 text-[14px] leading-[1.6] text-white/92 md:text-[15px]">
+              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3.5">
+                <span className="w-[80px] shrink-0 text-white/58">
+                  고인명
+                </span>
+                <span className="w-[calc(100%-80px)] break-keep text-left font-medium text-white">
+                  {room.deceased}
+                </span>
               </div>
-              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3">
-                <span className="shrink-0 text-white/58">상주</span>
-                <span className="text-right font-medium text-white">{room.chief}</span>
+              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3.5">
+                <span className="w-[80px] shrink-0 text-white/58">
+                  상주
+                </span>
+                <span className="w-[calc(100%-80px)] break-keep text-left font-medium text-white">
+                  {room.chief}
+                </span>
               </div>
-              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3">
-                <span className="shrink-0 text-white/58">발인일시</span>
-                <span className="text-right font-medium text-white">{room.departure}</span>
+              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3.5">
+                <span className="w-[80px] shrink-0 text-white/58">
+                  발인일시
+                </span>
+                <span className="w-[calc(100%-80px)] break-keep text-left font-medium text-white">
+                  {room.departure}
+                </span>
               </div>
-              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3">
-                <span className="shrink-0 text-white/58">장지</span>
-                <span className="text-right font-medium text-white">{room.site}</span>
+              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3.5">
+                <span className="w-[80px] shrink-0 text-white/58">
+                  장지
+                </span>
+                <span className="w-[calc(100%-80px)] break-keep text-left font-medium text-white">
+                  {room.site}
+                </span>
               </div>
             </div>
           </article>
