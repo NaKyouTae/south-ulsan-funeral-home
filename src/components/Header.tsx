@@ -47,28 +47,21 @@ export default function Header() {
         className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 md:h-22"
         onMouseLeave={() => setHovered(null)}
       >
-        <Link href="/" className="flex items-center gap-3">
-          <div className="relative h-11 w-11 overflow-hidden rounded-full border border-[var(--color-border)] bg-white">
+        <Link href="/" className="flex h-full items-center">
+          <div className="relative -top-[1px] h-[40px] w-[228px] md:w-[300px]">
             <Image
               src="/site-logo.png"
               alt={`${SITE.name} 로고`}
               fill
-              sizes="44px"
-              className="object-contain p-1.5"
+              sizes="(min-width: 768px) 300px, 228px"
+              className="object-contain object-left"
+              priority
             />
-          </div>
-          <div className="leading-tight">
-            <div className="font-serif text-xl font-bold text-[var(--color-primary)] md:text-2xl">
-              {SITE.name}
-            </div>
-            <div className="text-xs tracking-widest text-[var(--color-fg-muted)] uppercase">
-              {SITE.nameEn}
-            </div>
           </div>
         </Link>
 
         {/* 데스크탑 네비 */}
-        <nav className="hidden h-full lg:flex items-stretch gap-5 self-stretch">
+        <nav className="hidden h-full lg:flex items-stretch gap-7 self-stretch">
           {NAV.map((item) => {
             const active =
               pathname === item.href || pathname.startsWith(item.href + "/");
@@ -86,7 +79,7 @@ export default function Header() {
                   {item.label}
                 </Link>
                 {item.children && hovered === item.href && (
-                  <div className="absolute top-full left-1/2 min-w-[200px] -translate-x-1/2 border border-[var(--color-border)] bg-white py-2 shadow-md">
+                  <div className="absolute left-1/2 top-full min-w-[200px] -translate-x-1/2 border border-[var(--color-border)] bg-white py-2 shadow-md">
                     {item.children.map((c) => (
                       <Link
                         key={c.href}

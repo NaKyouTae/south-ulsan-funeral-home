@@ -11,7 +11,7 @@ export default function GreetingPage() {
         description="떠나는 분의 마지막을 가장 정중한 예의로 모시는 일 — 그것이 저희의 시작입니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "장례식장 안내" }, { label: "인사말" }]}
       />
-      <article className="mx-auto max-w-7xl px-6 py-20">
+      <article className="subpage-body mx-auto max-w-7xl px-6 py-16">
         <div className="font-serif text-2xl md:text-3xl leading-snug text-[var(--color-fg)]">
           “슬픔의 시간을 함께 지키는<br />
           가장 가까운 이웃이 되겠습니다.”
@@ -34,7 +34,7 @@ export default function GreetingPage() {
         </div>
         <div className="mt-14 pt-8 border-t border-[var(--color-border)] flex justify-end items-center gap-3">
           <span className="text-[var(--color-fg-muted)]">남울산전문장례식장 대표</span>
-          <span className="font-serif text-xl">홍 길 동</span>
+          <span className="font-serif text-xl">노진한</span>
         </div>
       </article>
     </>

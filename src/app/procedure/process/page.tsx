@@ -51,7 +51,7 @@ export default function ProcessPage() {
         description="임종부터 발인까지 전 과정을 단계별로 안내해드립니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "장례안내" }, { label: "장례절차" }]}
       />
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="subpage-body mx-auto max-w-7xl px-6 py-16">
         <SectionTitle
           eyebrow="3-Day Process"
           title="3일장 표준 절차"

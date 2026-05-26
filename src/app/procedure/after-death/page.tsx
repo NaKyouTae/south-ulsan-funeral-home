@@ -13,8 +13,8 @@ export default function AfterDeathPage() {
         description="임종 직후 가족이 가장 먼저 해야 할 일들을 안내해드립니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "장례안내" }, { label: "임종 후 절차" }]}
       />
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="card p-7 bg-[var(--color-primary-tint)] border-[var(--color-primary)]/20 mb-10">
+      <section className="subpage-body mx-auto max-w-7xl px-6 py-16">
+        <div className="card !pt-7 p-7 bg-[var(--color-primary-tint)] border-[var(--color-primary)]/20 mb-10">
           <div className="text-xs tracking-widest text-[var(--color-accent)] uppercase mb-2">
             Emergency
           </div>

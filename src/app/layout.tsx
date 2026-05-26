@@ -21,9 +21,9 @@ const notoSerif = Noto_Serif_KR({
 export const metadata: Metadata = {
   metadataBase: new URL("https://south-ulsan-funeral.kr"),
   icons: {
-    icon: "/site-logo.png",
-    shortcut: "/site-logo.png",
-    apple: "/site-logo.png",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/apple-icon.png",
   },
   title: {
     default: "남울산전문장례식장 | 정성으로 모시는 마지막 길",

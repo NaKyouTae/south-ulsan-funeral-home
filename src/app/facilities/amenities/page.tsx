@@ -20,9 +20,9 @@ export default function AmenitiesPage() {
         description="장례 기간 동안 필요한 모든 편의시설을 한곳에서 이용하실 수 있습니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "시설안내" }, { label: "부대시설" }]}
       />
-      <section className="mx-auto max-w-7xl px-6 py-16 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {AMENITIES.map((a) => (
-          <div key={a.title} className="card p-7">
+      <section className="subpage-body mx-auto grid max-w-7xl gap-6 px-6 py-16 md:grid-cols-2 lg:grid-cols-3">
+        {AMENITIES.map((a, index) => (
+          <div key={a.title} className={index === 0 ? "card !pt-7 p-7" : "card p-7"}>
             <div className="font-serif text-lg font-bold text-[var(--color-primary)]">
               {a.title}
             </div>

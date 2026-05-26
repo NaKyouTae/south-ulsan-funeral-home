@@ -12,11 +12,11 @@ export default function MortuaryPage() {
         description="고인이 가장 평안하게 머무르실 수 있도록 최적의 환경을 유지합니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "시설안내" }, { label: "안치실" }]}
       />
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="subpage-body mx-auto max-w-7xl px-6 py-16">
         <Prose>
-          <h3>안치실 운영</h3>
+          <h3 className="!mt-0">안치실 운영</h3>
           <ul>
-            <li>최신 안치 냉장 시설 16기 운영 (영하 10℃~5℃ 정밀 제어)</li>
+            <li>최신 안치 냉장 시설 10기 운영 (영하 10℃~5℃ 정밀 제어)</li>
             <li>24시간 모니터링 시스템으로 시설 상태를 상시 점검합니다.</li>
             <li>독립된 입실 동선으로 고인의 존엄을 지킵니다.</li>
           </ul>

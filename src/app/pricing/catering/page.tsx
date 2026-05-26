@@ -21,7 +21,7 @@ export default function CateringPricingPage() {
         description="신선하고 정갈한 음식을 합리적인 가격에 제공합니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "이용요금" }, { label: "음식·접객" }]}
       />
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="subpage-body mx-auto max-w-7xl px-6 py-16">
         <PriceTable caption="식음료 표준 단가" rows={ROWS} />
         <ul className="mt-6 text-xs text-[var(--color-fg-muted)] space-y-1">
           <li>· 음식은 사용한 만큼 정산하는 후불 정산 방식으로 운영됩니다.</li>

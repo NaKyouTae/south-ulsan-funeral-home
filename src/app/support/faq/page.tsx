@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: "주차는 어떻게 하나요?",
-    a: "지하 1~2층에 200대 규모의 주차장이 마련되어 있으며, 장례 기간 중 조문객 차량은 무료로 이용 가능합니다.",
+    a: "지상 1층에 70대 규모의 주차장이 마련되어 있으며, 장례 기간 중 조문객 차량은 무료로 이용 가능합니다.",
   },
   {
     q: "외국인 조문객 응대도 가능한가요?",
@@ -38,7 +38,7 @@ export default function FaqPage() {
         description="이용자분들이 자주 문의하시는 내용을 정리했습니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "고객센터" }, { label: "자주묻는 질문" }]}
       />
-      <section className="mx-auto max-w-7xl px-6 py-16 space-y-3">
+      <section className="subpage-body mx-auto max-w-7xl space-y-3 px-6 py-16">
         {FAQS.map((f, i) => (
           <details
             key={i}

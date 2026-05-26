@@ -12,9 +12,9 @@ export default function EtiquettePage() {
         description="장례에 임하실 때 지키시면 좋은 예절을 안내해드립니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "장례안내" }, { label: "상복·예절" }]}
       />
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="subpage-body mx-auto max-w-7xl px-6 py-16">
         <Prose>
-          <h3>상주의 복장</h3>
+          <h3 className="!mt-0">상주의 복장</h3>
           <ul>
             <li>남자 상주는 검정 양복에 흰색 셔츠, 검정 넥타이를 갖추시는 것이 일반적입니다.</li>
             <li>여자 상주는 검정 한복 또는 검정 정장을 권합니다.</li>

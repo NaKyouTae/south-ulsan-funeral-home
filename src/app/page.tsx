@@ -5,16 +5,16 @@ import SectionTitle from "@/components/SectionTitle";
 import { SITE } from "@/lib/site";
 
 const HERO_LINKS = [
-  { title: "오시는길", href: "/about/location" },
-  { title: "시설안내", href: "/facilities/funeral-hall" },
+  { title: "오시는 길", href: "/about/location" },
+  { title: "상세안내", href: "/facilities/funeral-hall" },
 ];
 
 const ROOMS = [
-  { name: "VIP101호", status: "사용중", deceased: "故 김ㅇㅇ", chief: "김ㅇㅇ 외 2인", departure: "2026-05-18 07:00", site: "울산하늘공원(승화원) 대전현 충원" },
-  { name: "VIP301호", status: "사용중", deceased: "故 이ㅇㅇ", chief: "이ㅇㅇ · 이ㅇㅇ", departure: "2026-05-18 09:30", site: "울주군 선영" },
+  { name: "VIP101호", status: "사용중", deceased: "故 정순훈", chief: "이재영, 이재남, 강수옥", departure: "2026-05-27 09:20", site: "울산하늘공원(승화원) 대전현 충원" },
+  { name: "VIP301호", status: "사용중", deceased: "故 박종숙(데레사)", chief: "서진혁, 서문경, 서문의, 서희정, 노현정, 정신영, 홍성균, 안종득, 서장우, 홍세은", departure: "2026-05-27 09:00", site: "울산하늘공원(승화원)" },
   { name: "VIP302호", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
-  { name: "VIP401호", status: "사용중", deceased: "故 박ㅇㅇ", chief: "배우자 : 김신옥 / 자 : 최현진 / 자부 : 신혜정 / 녀 : 최현숙 / 사위 : 강종구 / 손녀 : 최연우 외손자 : 강민규,강민재", departure: "2026-05-19 07:00", site: "양산영락공원" },
-  { name: "VIP402호", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
+  { name: "VIP401호", status: "사용중", deceased: "故 김정순(권사)", chief: "김종현, 김종균, 김소영, 양성호, 한영란, 김민성, 최정재, 김다운, 양지원", departure: "2026-05-27 08:20", site: "서울시립승화원-청아공원" },
+  { name: "VIP402호", status: "사용중", deceased: "故 추연화(권사)", chief: "남원우, 남경우", departure: "2026-05-27 05:00", site: "서울추모공원" },
 ];
 
 export default function HomePage() {
@@ -24,12 +24,12 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[var(--color-primary)]" />
         <div className="absolute inset-0">
           <Image
-            src="/hero-building.png"
+            src="/hero-building-main.jpeg"
             alt="남울산전문장례식장 전경"
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-20"
+            className="object-cover opacity-30"
           />
         </div>
         <div
@@ -37,7 +37,7 @@ export default function HomePage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(110deg, rgba(18,38,33,0.92) 0%, rgba(18,38,33,0.82) 42%, rgba(18,38,33,0.72) 100%)",
+              "linear-gradient(110deg, rgba(11,18,39,0.82) 0%, rgba(17,26,53,0.68) 42%, rgba(23,34,70,0.54) 100%)",
           }}
         />
         <div
@@ -45,31 +45,28 @@ export default function HomePage() {
           className="absolute inset-0 opacity-30"
           style={{
             backgroundImage:
-              "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 38%, rgba(181,137,74,0.18) 100%)",
+              "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 38%, rgba(210,168,70,0.2) 100%)",
           }}
         />
 
-        <div className="relative mx-auto box-border h-fit min-h-[calc(100dvh-8rem)] max-w-7xl px-6 py-[32px] md:min-h-[calc(100vh-8rem)] md:py-8 lg:min-h-[calc(100dvh-8rem)] lg:py-8">
-          <div className="flex min-h-full flex-col justify-around text-white md:justify-between md:gap-8">
+        <div className="relative mx-auto box-border min-h-fit max-w-7xl px-6 py-[32px] md:py-8 xl:h-[calc(100dvh-8rem)] xl:py-8">
+          <div className="flex flex-col justify-around text-white md:gap-8 xl:h-full xl:justify-between">
             <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-start lg:gap-8">
               <div className="max-w-4xl pt-0 md:pt-4">
-                <div className="text-[14px] uppercase tracking-[0.42em] text-[var(--color-accent-soft)]">
-                  South Ulsan Funeral Home
-                </div>
-                <h1 className="mt-4 font-serif text-[38px] font-bold leading-[1.28] tracking-tight md:mt-8 md:text-[52px] md:leading-[1.4]">
+                <h1 className="mt-4 font-serif text-[38px] font-bold leading-[1.28] tracking-tight md:mt-4 md:text-[48px] md:leading-[1.4]">
                   정성으로 모시는
                   <br />
-                  마지막 길, <span className="text-[var(--color-accent-soft)]">남울산</span>입니다
+                  마지막 길, <span className="text-[var(--color-accent-soft)]">남울산</span>입니다.
                 </h1>
               </div>
 
-              <div className="mt-3 rounded-sm border border-white/8 bg-[rgba(53,76,69,0.72)] p-2.5 shadow-[0_24px_60px_rgba(0,0,0,0.18)] backdrop-blur-sm md:p-4 lg:mt-[28px]">
+              <div className="mt-3 lg:mt-[28px]">
                 <div className="grid grid-cols-2 gap-3">
                   {HERO_LINKS.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex min-h-[52px] items-center justify-center rounded-sm border border-white/28 px-3 text-center text-[15px] font-medium text-white transition-colors hover:border-white/55 hover:bg-white/8 md:min-h-[68px] md:px-4 md:text-base"
+                      className="flex min-h-[56px] items-center justify-center rounded-sm border border-white/28 bg-[rgba(23,34,70,0.5)] px-3 text-center text-[15px] font-medium text-white transition-colors hover:border-white/55 hover:bg-[rgba(23,34,70,0.62)] md:min-h-[56px] md:cursor-pointer md:px-4 md:text-base"
                     >
                       {item.title}
                     </Link>
@@ -77,7 +74,7 @@ export default function HomePage() {
                 </div>
                 <a
                   href={`tel:${SITE.phoneLink}`}
-                  className="mt-2.5 inline-flex min-h-[54px] w-full items-center justify-center rounded-sm bg-[var(--color-accent)] px-3 text-center text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(181,137,74,0.2)] transition-colors hover:bg-[var(--color-accent-soft)] md:mt-3 md:min-h-[68px] md:px-4 md:text-base"
+                  className="mt-2.5 inline-flex min-h-[64px] w-full items-center justify-center rounded-sm bg-[var(--color-accent)] px-3 text-center text-[18px] font-bold text-white transition-colors hover:bg-[var(--color-accent-soft)] md:mt-3 md:min-h-[64px] md:cursor-pointer md:px-4 md:text-[18px]"
                 >
                   24시간 상담 {SITE.phone}
                 </a>
@@ -144,7 +141,7 @@ export default function HomePage() {
                   className="absolute inset-0 opacity-30"
                   style={{
                     backgroundImage:
-                      "radial-gradient(circle at 30% 20%, rgba(214,182,126,0.4), transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.15), transparent 50%)",
+                      "radial-gradient(circle at 30% 20%, rgba(225,195,118,0.42), transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.15), transparent 50%)",
                   }}
                 />
                 <div className="absolute inset-0 flex items-center justify-center">

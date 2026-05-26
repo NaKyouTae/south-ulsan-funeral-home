@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 type Room = {
   name: string;
@@ -20,6 +21,7 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
   const resetTimerRef = useRef<number | null>(null);
   const activeRooms = rooms.filter((room) => room.status === "사용중");
   const loopRooms = activeRooms.length > 1 ? [...activeRooms, ...activeRooms, ...activeRooms] : activeRooms;
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -30,6 +32,7 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
 
     const step = card.offsetWidth + 12;
     container.scrollLeft = step * activeRooms.length;
+    setActiveIndex(0);
     return () => {
       if (resetTimerRef.current) {
         window.clearTimeout(resetTimerRef.current);
@@ -76,13 +79,31 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
 
     const currentIndex = Math.round(container.scrollLeft / step);
     const targetIndex = direction === "next" ? currentIndex + 1 : currentIndex - 1;
+    const normalizedIndex = ((targetIndex % length) + length) % length;
 
     container.scrollTo({
       left: targetIndex * step,
       behavior: "smooth",
     });
 
+    setActiveIndex(normalizedIndex);
     scheduleLoopReset(targetIndex, length, step);
+  };
+
+  const handleScroll = () => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const card = container.querySelector<HTMLElement>("[data-room-card]");
+    if (!card) return;
+
+    const step = card.offsetWidth + 12;
+    const length = activeRooms.length;
+    if (!length) return;
+
+    const currentIndex = Math.round(container.scrollLeft / step);
+    const normalizedIndex = ((currentIndex % length) + length) % length;
+    setActiveIndex(normalizedIndex);
   };
 
   return (
@@ -93,7 +114,7 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
             type="button"
             aria-label="이전 빈소 보기"
             onClick={() => scrollByCard("prev")}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/18 bg-[rgba(22,39,34,0.76)] text-white shadow-[0_8px_20px_rgba(0,0,0,0.2)] transition-colors active:bg-white/14 md:h-11 md:w-11"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-[rgba(255,255,255,0.72)] text-[var(--color-primary)] shadow-[0_10px_24px_rgba(0,0,0,0.16)] transition-colors hover:bg-white active:bg-white md:h-11 md:w-11 md:cursor-pointer"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
@@ -111,7 +132,7 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
             type="button"
             aria-label="다음 빈소 보기"
             onClick={() => scrollByCard("next")}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/18 bg-[rgba(22,39,34,0.76)] text-white shadow-[0_8px_20px_rgba(0,0,0,0.2)] transition-colors active:bg-white/14 md:h-11 md:w-11"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-[rgba(255,255,255,0.72)] text-[var(--color-primary)] shadow-[0_10px_24px_rgba(0,0,0,0.16)] transition-colors hover:bg-white active:bg-white md:h-11 md:w-11 md:cursor-pointer"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
@@ -128,60 +149,90 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
 
       <div
         ref={scrollRef}
-        className="relative left-1/2 flex w-screen -translate-x-1/2 snap-x snap-mandatory gap-3 overflow-x-auto px-6 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:left-0 md:w-full md:translate-x-0 md:gap-6 md:overflow-x-hidden md:px-0 lg:gap-8"
+        onScroll={handleScroll}
+        className="relative left-1/2 flex w-screen -translate-x-1/2 snap-x snap-mandatory gap-3 overflow-x-auto px-6 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:left-0 md:w-full md:translate-x-0 md:gap-4 md:overflow-x-hidden md:px-0 lg:gap-5"
       >
         {loopRooms.map((room, index) => (
           <article
             key={`${room.name}-${index}`}
             data-room-card
-            className="w-[calc(100vw-3rem)] shrink-0 snap-center rounded-sm border border-white/14 bg-[rgba(77,94,87,0.82)] p-5 shadow-[0_18px_36px_rgba(0,0,0,0.18)] md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4rem)/3)]"
+            className="break-keep flex w-[calc(100vw-3rem)] shrink-0 snap-start flex-col overflow-hidden border border-[#d3d7df] bg-white md:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-3.75rem)/4)]"
           >
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <div className="text-[12px] uppercase tracking-[0.24em] text-white/55">
-                  Room
+            <div className="flex flex-1 flex-col px-8 pb-8 pt-6 md:px-6 md:pb-8 md:pt-6 lg:px-5 lg:pb-8 lg:pt-6">
+              <div className="min-h-fit p-0 text-center text-[20px] font-medium leading-tight text-[var(--color-primary)] md:text-[20px] lg:text-[20px]">
+                {room.deceased}
+              </div>
+
+              <div className="mb-0 mt-6 border-t border-[#d9dce3] pb-0 pt-7 text-[#5a616c] md:pb-0 md:pt-7 lg:pb-0 lg:pt-7">
+                <div className="space-y-4 md:space-y-3.5 lg:space-y-3">
+                <div className="flex items-start gap-6 md:gap-3.5 lg:gap-3">
+                  <span className="mt-1 inline-flex h-[22px] w-[64px] shrink-0 items-center justify-center bg-[var(--color-accent)] pb-[2px] pt-0 align-middle text-[14px] font-medium leading-none text-white">
+                    빈소
+                  </span>
+                  <span className="flex min-h-[22px] w-[calc(100%-64px)] items-center break-keep text-left text-[16px] font-medium leading-[1.55] text-[#5a616c] md:text-[16px] lg:text-[16px]">
+                    {room.name}
+                  </span>
                 </div>
-                <div className="mt-1 text-[20px] font-semibold text-white md:text-[22px]">{room.name}</div>
+                <div className="flex items-start gap-6 md:gap-3.5 lg:gap-3">
+                  <span className="mt-1 inline-flex h-[22px] w-[64px] shrink-0 items-center justify-center bg-[var(--color-accent)] pb-[2px] pt-0 align-middle text-[14px] font-medium leading-none text-white">
+                    상주명
+                  </span>
+                  <span className="flex min-h-[22px] w-[calc(100%-64px)] items-center break-keep text-left text-[16px] font-medium leading-[1.7] text-[#5a616c] md:text-[16px] lg:text-[16px]">
+                    {room.chief}
+                  </span>
+                </div>
+                <div className="flex items-start gap-6 md:gap-3.5 lg:gap-3">
+                  <span className="mt-1 inline-flex h-[22px] w-[64px] shrink-0 items-center justify-center bg-[var(--color-accent)] pb-[2px] pt-0 align-middle text-[14px] font-medium leading-none text-white">
+                    장지
+                  </span>
+                  <span className="flex min-h-[22px] w-[calc(100%-64px)] items-center break-keep text-left text-[16px] font-medium leading-[1.7] text-[#5a616c] md:text-[16px] lg:text-[16px]">
+                    {room.site}
+                  </span>
+                </div>
+                <div className="flex items-start gap-6 md:gap-3.5 lg:gap-3">
+                  <span className="mt-1 inline-flex h-[22px] w-[64px] shrink-0 items-center justify-center bg-[var(--color-accent)] pb-[2px] pt-0 align-middle text-[14px] font-medium leading-none text-white">
+                    발인일시
+                  </span>
+                  <span className="flex min-h-[22px] w-[calc(100%-64px)] items-center break-keep text-left text-[16px] font-medium leading-[1.55] text-[#5a616c] md:text-[16px] lg:text-[16px]">
+                    {room.departure}
+                  </span>
+                </div>
+              </div>
               </div>
             </div>
 
-            <div className="mt-5 space-y-3 text-[14px] leading-[1.6] text-white/92 md:text-[15px]">
-              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3.5">
-                <span className="w-[80px] shrink-0 text-white/58">
-                  고인명
-                </span>
-                <span className="w-[calc(100%-80px)] break-keep text-left font-medium text-white">
-                  {room.deceased}
-                </span>
-              </div>
-              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3.5">
-                <span className="w-[80px] shrink-0 text-white/58">
-                  상주
-                </span>
-                <span className="w-[calc(100%-80px)] break-keep text-left font-medium text-white">
-                  {room.chief}
-                </span>
-              </div>
-              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3.5">
-                <span className="w-[80px] shrink-0 text-white/58">
-                  발인일시
-                </span>
-                <span className="w-[calc(100%-80px)] break-keep text-left font-medium text-white">
-                  {room.departure}
-                </span>
-              </div>
-              <div className="flex items-start justify-between gap-4 border-t border-white/10 pt-3.5">
-                <span className="w-[80px] shrink-0 text-white/58">
-                  장지
-                </span>
-                <span className="w-[calc(100%-80px)] break-keep text-left font-medium text-white">
-                  {room.site}
-                </span>
-              </div>
-            </div>
+            <Link
+              href="/notice/obituary"
+              className="mt-auto flex min-h-[74px] items-center justify-center bg-[rgba(23,34,70,0.86)] px-6 text-center text-[16px] font-medium text-white transition-colors hover:bg-[var(--color-primary)] md:min-h-[56px] md:text-[16px] lg:min-h-[52px] lg:text-[16px]"
+            >
+              상세 일정 보기
+            </Link>
           </article>
         ))}
       </div>
+
+      {activeRooms.length > 1 && (
+        <div className="mt-4 flex items-center justify-center gap-1.5">
+          {activeRooms.map((room, index) => (
+            <button
+              key={`${room.name}-dot`}
+              type="button"
+              aria-label={`${index + 1}번째 빈소 보기`}
+              onClick={() => {
+                const container = scrollRef.current;
+                if (!container) return;
+                const card = container.querySelector<HTMLElement>("[data-room-card]");
+                if (!card) return;
+                const step = card.offsetWidth + 12;
+                const baseIndex = activeRooms.length + index;
+                container.scrollTo({ left: baseIndex * step, behavior: "smooth" });
+                setActiveIndex(index);
+              }}
+              className={index === activeIndex ? "h-[6px] w-5 rounded-full bg-[var(--color-accent)]" : "h-[6px] w-[6px] rounded-full bg-white/45"}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

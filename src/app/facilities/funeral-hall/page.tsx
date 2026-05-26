@@ -1,14 +1,60 @@
+import InlineRoomGallery from "@/components/InlineRoomGallery";
 import PageHero from "@/components/PageHero";
 import SectionTitle from "@/components/SectionTitle";
 
 export const metadata = { title: "빈소" };
 
 const ROOMS = [
-  { name: "VIP101호", area: "165㎡ (50평)", capacity: "120명", features: ["프리미엄 접객실", "전용 휴게공간", "독립 화장실"] },
-  { name: "VIP301호", area: "99㎡ (30평)", capacity: "80명", features: ["넓은 접객실", "별도 분향소"] },
-  { name: "VIP302호", area: "99㎡ (30평)", capacity: "80명", features: ["넓은 접객실", "별도 분향소"] },
-  { name: "VIP401호", area: "66㎡ (20평)", capacity: "50명", features: ["접객실 포함", "기본 분향소"] },
-  { name: "VIP402호", area: "66㎡ (20평)", capacity: "50명", features: ["접객실 포함", "기본 분향소"] },
+  {
+    name: "VIP101호",
+    area: "264㎡ (80평)",
+    capacity: "120명",
+    features: ["프리미엄 접객실", "전용 휴게공간"],
+    photos: [
+      { src: "/hero-building-main.jpeg", alt: "VIP101호 사진 1", label: "빈소 전경" },
+      { src: "/hero-building.png", alt: "VIP101호 사진 2", label: "공간 분위기" },
+    ],
+  },
+  {
+    name: "VIP301호",
+    area: "264㎡ (80평)",
+    capacity: "120명",
+    features: ["프리미엄 접객실", "전용 휴게공간"],
+    photos: [
+      { src: "/hero-building.png", alt: "VIP301호 사진 1", label: "빈소 전경" },
+      { src: "/hero-building-main.jpeg", alt: "VIP301호 사진 2", label: "접객 공간" },
+    ],
+  },
+  {
+    name: "VIP302호",
+    area: "198㎡ (60평)",
+    capacity: "80명",
+    features: ["넓은 접객실"],
+    photos: [
+      { src: "/hero-building-main.jpeg", alt: "VIP302호 사진 1", label: "빈소 전경" },
+      { src: "/hero-building.png", alt: "VIP302호 사진 2", label: "공간 분위기" },
+    ],
+  },
+  {
+    name: "VIP401호",
+    area: "264㎡ (80평)",
+    capacity: "120명",
+    features: ["프리미엄 접객실", "전용 휴게공간"],
+    photos: [
+      { src: "/hero-building.png", alt: "VIP401호 사진 1", label: "빈소 전경" },
+      { src: "/hero-building-main.jpeg", alt: "VIP401호 사진 2", label: "접객 공간" },
+    ],
+  },
+  {
+    name: "VIP402호",
+    area: "198㎡ (60평)",
+    capacity: "80명",
+    features: ["넓은 접객실"],
+    photos: [
+      { src: "/hero-building-main.jpeg", alt: "VIP402호 사진 1", label: "빈소 전경" },
+      { src: "/hero-building.png", alt: "VIP402호 사진 2", label: "공간 분위기" },
+    ],
+  },
 ];
 
 export default function FuneralHallPage() {
@@ -20,11 +66,15 @@ export default function FuneralHallPage() {
         description="규모와 특성이 다른 빈소를 운영하여 이용자의 상황에 맞는 선택을 도와드립니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "시설안내" }, { label: "빈소" }]}
       />
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="subpage-body mx-auto max-w-7xl px-6 py-16">
         <SectionTitle eyebrow="Rooms" title="빈소 종류" />
         <div className="mt-10 grid md:grid-cols-2 gap-6">
           {ROOMS.map((r) => (
             <div key={r.name} className="card p-7 hover:border-[var(--color-primary)] transition-colors">
+              <div className="-mx-7 -mt-7 mb-7 overflow-hidden border-b border-[var(--color-border)]">
+                <InlineRoomGallery roomName={r.name} photos={r.photos} />
+              </div>
+
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="text-xs tracking-widest text-[var(--color-accent)] uppercase">

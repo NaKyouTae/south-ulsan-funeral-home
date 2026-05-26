@@ -18,7 +18,7 @@ export default function HistoryPage() {
         description="남울산전문장례식장이 걸어온 길을 소개합니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "장례식장 안내" }, { label: "연혁" }]}
       />
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="subpage-body mx-auto max-w-7xl px-6 py-16">
         <ol className="relative border-l-2 border-[var(--color-primary)]/20 pl-8 space-y-12">
           {TIMELINE.map((t) => (
             <li key={t.year} className="relative">

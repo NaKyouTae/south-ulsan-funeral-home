@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  /* 메인 톤: 차분한 다크 그린 (#1f3a34) + 따뜻한 아이보리 + 골드 액센트 */
+  /* 메인 톤: 딥 네이비 (#172246) + 따뜻한 아이보리 + 골드 액센트 */
   --color-bg: #fbfaf6;
   --color-surface: #ffffff;
   --color-border: #e6e1d4;
   --color-fg: #1c1c1a;
   --color-fg-muted: #5b5b56;
-  --color-primary: #1f3a34;
-  --color-primary-soft: #2d544a;
-  --color-primary-tint: #e8efec;
-  --color-accent: #b5894a;
-  --color-accent-soft: #d6b67e;
+  --color-primary: #172246;
+  --color-primary-soft: #243161;
+  --color-primary-tint: #e9edf8;
+  --color-accent: #d2a846;
+  --color-accent-soft: #e1c376;
   --color-danger: #8a3a3a;
 }
 
@@ -63,15 +63,15 @@ a {
 .bg-paper {
   background-color: var(--color-bg);
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(31, 58, 52, 0.06) 1px, transparent 0);
+    radial-gradient(circle at 1px 1px, rgba(23, 34, 70, 0.06) 1px, transparent 0);
   background-size: 28px 28px;
 }
 
 .bg-hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(15, 30, 27, 0.55) 0%,
-    rgba(15, 30, 27, 0.75) 100%
+    rgba(12, 18, 38, 0.55) 0%,
+    rgba(12, 18, 38, 0.75) 100%
   );
 }
 
@@ -93,7 +93,7 @@ a {
   left: 50%;
   bottom: -1px;
   width: 0;
-  height: 2px;
+  height: 4px;
   background: var(--color-accent);
   transition: all 0.25s ease;
   transform: translateX(-50%);
@@ -156,6 +156,11 @@ a {
 .btn-outline:hover {
   background: var(--color-primary);
   color: #ffffff;
+}
+
+.subpage-body > :first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* 다크 모드: 시스템 다크는 비활성화 (장례식장 사이트는 라이트 톤 유지) */

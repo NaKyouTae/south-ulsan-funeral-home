@@ -34,9 +34,9 @@ export default function ReligionPage() {
         description="가족의 종교에 맞춘 정중한 의례를 함께 준비해드립니다."
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "장례안내" }, { label: "종교별 장례" }]}
       />
-      <section className="mx-auto max-w-7xl px-6 py-16 grid md:grid-cols-2 gap-6">
-        {RELIGIONS.map((r) => (
-          <div key={r.name} className="card p-7">
+      <section className="subpage-body mx-auto grid max-w-7xl gap-6 px-6 py-16 md:grid-cols-2">
+        {RELIGIONS.map((r, index) => (
+          <div key={r.name} className={index === 0 ? "card !pt-7 p-7" : "card p-7"}>
             <div className="font-serif text-2xl font-bold text-[var(--color-primary)]">
               {r.name}
             </div>

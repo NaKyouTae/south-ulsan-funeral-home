@@ -41,7 +41,7 @@ export default function LocationPage() {
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "장례식장 안내" }, { label: "오시는 길" }]}
       />
 
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="subpage-body mx-auto max-w-7xl px-6 py-16">
         <div className="card overflow-hidden">
           <a
             href={naverMapUrl}
@@ -68,7 +68,7 @@ export default function LocationPage() {
             </div>
             <div className="p-6">
               <div className="text-xs tracking-widest text-[var(--color-accent)] uppercase">
-                Phone
+                Tel
               </div>
               <div className="mt-2 font-medium">{SITE.phone}</div>
             </div>
