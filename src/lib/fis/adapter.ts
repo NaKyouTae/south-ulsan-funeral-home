@@ -1,0 +1,101 @@
+import { ROOM_LIST } from "@/lib/site";
+import type { FisRawFuneral, Obituary } from "./types";
+
+const DATE_RE = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})$/;
+
+export function normalizeRoomName(name: string): string {
+  const stripped = (name ?? "").replace(/\s+/g, "");
+  if (!stripped) return "";
+  return /호$/.test(stripped) ? stripped : `${stripped}호`;
+}
+
+export function formatBalinDate(raw: string): string {
+  const m = DATE_RE.exec((raw ?? "").trim());
+  if (!m) return raw ?? "";
+  const [, y, mo, d, h, mi] = m;
+  return `${y}년 ${mo}월 ${d}일 ${h}시 ${mi}분`;
+}
+
+function joinSite(crematePlace: string, jangjiName: string): string {
+  const c = (crematePlace ?? "").trim();
+  const j = (jangjiName ?? "").trim();
+  if (c && j) return `${c}-${j}`;
+  if (c) return c;
+  if (j) return j;
+  return "-";
+}
+
+export function toObituary(raw: FisRawFuneral): Obituary {
+  const roomName = normalizeRoomName(raw.FuneralName);
+  const roomFloor = (raw.FuneralFloor ?? "").trim();
+  const roomLabel = roomFloor ? `${roomName} · ${roomFloor}` : roomName;
+  const sangju = (raw.Sangju ?? []).map((s) => ({ rel: s.Rel ?? "", name: s.SangjuName ?? "" }));
+
+  return {
+    id: raw.Idx,
+    goinId: raw.GoinId,
+    isPlaceholder: false,
+    roomLabel,
+    roomName,
+    roomFloor,
+    deceased: raw.GoinName ?? "",
+    age: (raw.Age ?? "").trim(),
+    gender: (raw.Gender ?? "").trim(),
+    religion: (raw.Religion ?? "").trim(),
+    photoPath: (raw.PhotoPath ?? "").trim(),
+    roomDt: raw.RoomDt ?? "",
+    ipDt: raw.IpDt ?? "",
+    balinDt: raw.BalinDt ?? "",
+    balinDisplay: formatBalinDate(raw.BalinDt),
+    cremate: (raw.CrematePlace ?? "").trim(),
+    jangji: (raw.JangjiName ?? "").trim(),
+    site: joinSite(raw.CrematePlace, raw.JangjiName),
+    comment: raw.Comment ?? "",
+    sangjoCorp: (raw.SangjoCorp ?? "").trim(),
+    sangju,
+    sangjuNames: sangju.map((s) => s.name).filter(Boolean).join(", ") || "-",
+  };
+}
+
+function placeholderId(roomName: string): number {
+  let hash = 0;
+  for (let i = 0; i < roomName.length; i++) hash = (hash * 31 + roomName.charCodeAt(i)) | 0;
+  return -Math.abs(hash) - 1;
+}
+
+export function placeholderObituary(roomName: string): Obituary {
+  return {
+    id: placeholderId(roomName),
+    goinId: 0,
+    isPlaceholder: true,
+    roomLabel: roomName,
+    roomName,
+    roomFloor: "",
+    deceased: "-",
+    age: "",
+    gender: "",
+    religion: "",
+    photoPath: "",
+    roomDt: "",
+    ipDt: "",
+    balinDt: "",
+    balinDisplay: "-",
+    cremate: "",
+    jangji: "",
+    site: "-",
+    comment: "",
+    sangjoCorp: "",
+    sangju: [],
+    sangjuNames: "-",
+  };
+}
+
+export function toObituaries(list: FisRawFuneral[]): Obituary[] {
+  return list.map(toObituary);
+}
+
+export function mergeWithRoomList(obituaries: Obituary[]): Obituary[] {
+  const occupied = new Set(obituaries.map((o) => o.roomName));
+  const emptyRooms = ROOM_LIST.filter((r) => !occupied.has(r)).map(placeholderObituary);
+  return [...obituaries, ...emptyRooms];
+}

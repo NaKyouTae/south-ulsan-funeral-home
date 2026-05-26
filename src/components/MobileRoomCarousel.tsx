@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-type Room = {
+export type Room = {
   name: string;
   status: string;
   deceased: string;
@@ -109,6 +109,27 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
     const normalizedIndex = ((currentIndex % length) + length) % length;
     setActiveIndex(normalizedIndex);
   };
+
+  if (activeRooms.length === 0) {
+    return (
+      <article className="break-keep mx-auto flex max-w-md flex-col items-center border border-white/25 bg-white/8 px-8 py-10 text-center text-white">
+        <div className="font-serif text-[20px] font-medium leading-tight text-white">
+          현재 모셔지고 있는 고인이 없습니다.
+        </div>
+        <p className="mt-3 text-[14px] leading-[1.7] text-white/75">
+          빈소 현황은 실시간 정보가 아닐 수 있으니
+          <br />
+          페이지를 새로고침해 주세요.
+        </p>
+        <Link
+          href="/notice/obituary"
+          className="mt-6 inline-flex h-11 items-center justify-center border border-white/45 bg-white/10 px-5 text-[14px] font-medium text-white transition-colors hover:bg-white/20"
+        >
+          부고안내 페이지로 이동
+        </Link>
+      </article>
+    );
+  }
 
   return (
     <div className="relative">
