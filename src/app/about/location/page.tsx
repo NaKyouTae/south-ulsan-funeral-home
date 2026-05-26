@@ -47,14 +47,22 @@ export default function LocationPage() {
             href={naverMapUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative block aspect-[16/7] min-h-[320px] overflow-hidden bg-[var(--color-primary-tint)]"
+            className="group relative block min-h-[320px] overflow-hidden bg-[var(--color-primary-tint)] aspect-auto md:aspect-[16/7]"
           >
+            <Image
+              src="/naver-map-preview-mobile.png"
+              alt={`${SITE.name} 지도 미리보기`}
+              width={1304}
+              height={1368}
+              sizes="100vw"
+              className="h-auto w-full transition-transform duration-300 group-hover:scale-[1.01] md:hidden"
+            />
             <Image
               src="/naver-map-preview.png"
               alt={`${SITE.name} 지도 미리보기`}
               fill
               sizes="(min-width: 1024px) 1120px, 100vw"
-              className="object-cover transition-transform duration-300 group-hover:scale-[1.01]"
+              className="hidden object-center object-cover transition-transform duration-300 group-hover:scale-[1.01] md:block"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent" />
           </a>

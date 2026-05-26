@@ -14,7 +14,7 @@ const ROOMS = [
   { name: "VIP301호", status: "사용중", deceased: "故 박종숙(데레사)", chief: "서진혁, 서문경, 서문의, 서희정, 노현정, 정신영, 홍성균, 안종득, 서장우, 홍세은", departure: "2026-05-27 09:00", site: "울산하늘공원(승화원)" },
   { name: "VIP302호", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
   { name: "VIP401호", status: "사용중", deceased: "故 김정순(권사)", chief: "김종현, 김종균, 김소영, 양성호, 한영란, 김민성, 최정재, 김다운, 양지원", departure: "2026-05-27 08:20", site: "서울시립승화원-청아공원" },
-  { name: "VIP402호", status: "사용중", deceased: "故 추연화(권사)", chief: "남원우, 남경우", departure: "2026-05-27 05:00", site: "서울추모공원" },
+  { name: "VIP402호", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
 ];
 
 export default function HomePage() {

@@ -1,7 +1,13 @@
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import Prose from "@/components/Prose";
 
 export const metadata = { title: "안치실" };
+
+const MORTUARY_PHOTOS = [
+  { src: "/mortuary-room.jpeg", alt: "안치실 사진", label: "안치실" },
+  { src: "/enshrouding-room.jpeg", alt: "염습실 사진", label: "염습실" },
+];
 
 export default function MortuaryPage() {
   return (
@@ -13,6 +19,25 @@ export default function MortuaryPage() {
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "시설안내" }, { label: "안치실" }]}
       />
       <section className="subpage-body mx-auto max-w-7xl px-6 py-16">
+        <div className="mb-10 grid gap-6 md:grid-cols-2">
+          {MORTUARY_PHOTOS.map((photo) => (
+            <div key={photo.alt} className="overflow-hidden border border-[var(--color-border)] bg-white">
+              <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-primary-tint)]">
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+                <div className="absolute left-5 top-5 rounded-full bg-white/92 px-3 py-1 text-xs font-semibold text-[var(--color-primary)]">
+                  {photo.label}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <Prose>
           <h3 className="!mt-0">안치실 운영</h3>
           <ul>

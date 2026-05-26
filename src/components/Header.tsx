@@ -25,7 +25,7 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[var(--color-border)]">
+    <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-white/95 backdrop-blur">
       {/* 상단 유틸리티 바 */}
       <div className="hidden md:block bg-[var(--color-primary)] text-white/90">
         <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-6 text-sm">
@@ -112,8 +112,10 @@ export default function Header() {
 
         {/* 모바일 햄버거 */}
         <button
+          type="button"
           className="lg:hidden p-2"
           aria-label="메뉴 열기"
+          aria-expanded={open}
           onClick={() => setOpen(!open)}
         >
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -135,8 +137,8 @@ export default function Header() {
 
       {/* 모바일 메뉴 */}
       {open && (
-        <div className="fixed inset-x-0 top-18 bottom-0 z-40 border-t border-[var(--color-border)] bg-white md:top-20 lg:hidden">
-          <div className="flex h-full flex-col overflow-y-auto px-6 py-5">
+        <div className="absolute inset-x-0 top-full z-[60] border-t border-[var(--color-border)] bg-white shadow-[0_24px_48px_rgba(0,0,0,0.12)] lg:hidden">
+          <div className="flex max-h-[calc(100dvh-4.5rem)] flex-col overflow-y-auto px-6 py-5 md:max-h-[calc(100dvh-5.5rem)]">
             {NAV.map((item) => (
               <div key={item.href} className="border-b border-[var(--color-border)] py-4 last:border-0">
                 <Link
@@ -162,12 +164,6 @@ export default function Header() {
                 )}
               </div>
             ))}
-            <a
-              href={`tel:${SITE.phoneLink}`}
-              className="mt-6 btn-primary w-full"
-            >
-              {SITE.phone} 전화 상담
-            </a>
           </div>
         </div>
       )}

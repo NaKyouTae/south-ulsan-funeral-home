@@ -6,18 +6,13 @@ export default function Footer() {
     <footer className="bg-[var(--color-primary)] text-white/80">
       {/* 긴급 상담 배너 */}
       <div className="border-b border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-8 md:flex-row">
-          <div>
-            <div className="mb-1 text-xs uppercase tracking-[0.2em] text-[var(--color-accent-soft)]">
-              24h Emergency Call
-            </div>
-            <div className="font-serif text-[24px] leading-snug text-white">
-              임종 후 가장 먼저, {SITE.name}으로 연락주세요
-            </div>
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-8 md:flex-row md:items-center">
+          <div className="font-serif text-[22px] leading-snug text-white md:text-[24px]">
+            임종 후 가장 먼저, {SITE.name}으로 연락주세요.
           </div>
           <a
             href={`tel:${SITE.phoneLink}`}
-            className="inline-flex min-h-[56px] items-center gap-3 rounded-sm bg-[var(--color-accent)] px-7 py-4 text-[1.05rem] font-bold text-[var(--color-primary)] hover:bg-[var(--color-accent-soft)]"
+            className="hidden min-h-[56px] items-center gap-3 rounded-sm bg-[var(--color-accent)] px-7 py-4 text-[1.05rem] font-bold text-[var(--color-primary)] hover:bg-[var(--color-accent-soft)] md:inline-flex"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />

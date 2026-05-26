@@ -35,20 +35,17 @@ export default function InlineRoomGallery({
     <div className="relative">
       <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-primary-tint)]">
         <Image
+          key={`${roomName}-${activeIndex}`}
           src={safePhotos[activeIndex].src}
           alt={safePhotos[activeIndex].alt}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover"
+          className="animate-[fadeIn_.35s_ease] object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[rgba(23,34,70,0.45)] via-transparent to-transparent" />
         <div className="absolute left-5 top-5 rounded-full bg-white/92 px-3 py-1 text-xs font-semibold text-[var(--color-primary)]">
           {safePhotos[activeIndex].label}
         </div>
-        <div className="absolute bottom-5 left-5 text-sm font-medium text-white">
-          {roomName} · {activeIndex + 1}/{safePhotos.length}
-        </div>
-
         {safePhotos.length > 1 && (
           <>
             <button
@@ -83,17 +80,6 @@ export default function InlineRoomGallery({
                 />
               </svg>
             </button>
-            <div className="absolute bottom-5 right-5 flex items-center gap-1.5">
-              {safePhotos.map((photo, index) => (
-                <button
-                  key={`${photo.alt}-${index}`}
-                  type="button"
-                  aria-label={`${roomName} ${index + 1}번째 사진 보기`}
-                  onClick={() => setActiveIndex(index)}
-                  className={index === activeIndex ? "h-[6px] w-5 rounded-full bg-white" : "h-[6px] w-[6px] rounded-full bg-white/55"}
-                />
-              ))}
-            </div>
           </>
         )}
       </div>

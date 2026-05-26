@@ -163,4 +163,13 @@ a {
   padding-top: 0 !important;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0.72;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* 다크 모드: 시스템 다크는 비활성화 (장례식장 사이트는 라이트 톤 유지) */

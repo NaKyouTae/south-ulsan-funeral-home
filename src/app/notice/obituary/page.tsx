@@ -59,29 +59,29 @@ export default function ObituaryPage() {
           <table className="min-w-[980px] w-full break-keep border-collapse text-[15px] md:text-[16px]">
             <thead>
               <tr className="bg-[#efefef] text-[var(--color-fg)]">
-                <th className="align-middle px-8 py-4 text-center text-[16px] font-semibold md:text-[17px]">빈소</th>
-                <th className="align-middle px-8 py-4 text-center text-[16px] font-semibold md:text-[17px]">고인명</th>
-                <th className="align-middle px-8 py-4 text-center text-[16px] font-semibold md:text-[17px]">상주명</th>
-                <th className="align-middle px-8 py-4 text-center text-[16px] font-semibold md:text-[17px]">장지</th>
-                <th className="align-middle px-8 py-4 text-center text-[16px] font-semibold md:text-[17px]">발인 일시</th>
+                <th className="align-middle px-4 py-4 text-center text-[16px] font-semibold md:text-[17px]">빈소</th>
+                <th className="align-middle px-4 py-4 text-center text-[16px] font-semibold md:text-[17px]">고인명</th>
+                <th className="align-middle px-4 py-4 text-center text-[16px] font-semibold md:text-[17px]">상주명</th>
+                <th className="align-middle px-4 py-4 text-center text-[16px] font-semibold md:text-[17px]">장지</th>
+                <th className="align-middle px-4 py-4 text-center text-[16px] font-semibold md:text-[17px]">발인 일시</th>
               </tr>
             </thead>
             <tbody>
               {OBITUARIES.map((o) => (
                 <tr key={o.id} className="border-t border-[#dfe2e7]">
-                  <td className="w-[140px] min-w-[140px] align-middle px-8 py-7 text-center text-[16px] font-medium leading-[1.5] text-[#666c75]">
+                  <td className="w-[140px] min-w-[140px] align-middle px-4 py-7 text-center text-[16px] font-medium leading-[1.5] text-[#666c75]">
                     {o.room}
                   </td>
-                  <td className="w-[140px] min-w-[140px] align-middle border-l border-[#dfe2e7] px-8 py-7 text-center text-[16px] font-medium leading-[1.5] text-[#666c75]">
+                  <td className="w-[140px] min-w-[140px] align-middle border-l border-[#dfe2e7] px-4 py-7 text-center text-[16px] font-medium leading-[1.5] text-[#666c75]">
                     {o.deceased}
                   </td>
-                  <td className="w-[41%] align-middle border-l border-[#dfe2e7] px-8 py-7 text-[16px] font-medium leading-[1.65] text-[#6a7079]">
+                  <td className="w-[41%] align-middle border-l border-[#dfe2e7] px-4 py-7 text-[16px] font-medium leading-[1.65] text-[#6a7079]">
                     {o.chief}
                   </td>
-                  <td className="w-[340px] min-w-[340px] align-middle border-l border-[#dfe2e7] px-8 py-7 text-center text-[16px] font-medium leading-[1.6] text-[#6a7079]">
+                  <td className="w-[248px] min-w-[248px] align-middle border-l border-[#dfe2e7] px-4 py-7 text-center text-[16px] font-medium leading-[1.6] text-[#6a7079]">
                     {o.site}
                   </td>
-                  <td className="w-[340px] min-w-[340px] align-middle border-l border-[#dfe2e7] px-8 py-7 text-center text-[16px] font-medium leading-[1.6] text-[#6a7079]">
+                  <td className="w-[248px] min-w-[248px] align-middle border-l border-[#dfe2e7] px-4 py-7 text-center text-[16px] font-medium leading-[1.6] text-[#6a7079]">
                     {o.departure}
                   </td>
                 </tr>

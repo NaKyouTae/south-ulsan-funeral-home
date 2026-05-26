@@ -20,25 +20,29 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const resetTimerRef = useRef<number | null>(null);
   const activeRooms = rooms.filter((room) => room.status === "사용중");
-  const loopRooms = activeRooms.length > 1 ? [...activeRooms, ...activeRooms, ...activeRooms] : activeRooms;
+  const inactiveRooms = rooms.filter((room) => room.status !== "사용중");
+  const visibleRooms =
+    activeRooms.length <= 3 ? [...activeRooms, ...inactiveRooms] : activeRooms;
+  const loopRooms =
+    visibleRooms.length > 1 ? [...visibleRooms, ...visibleRooms, ...visibleRooms] : visibleRooms;
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const container = scrollRef.current;
-    if (!container || activeRooms.length <= 1) return;
+    if (!container || visibleRooms.length <= 1) return;
 
     const card = container.querySelector<HTMLElement>("[data-room-card]");
     if (!card) return;
 
     const step = card.offsetWidth + 12;
-    container.scrollLeft = step * activeRooms.length;
+    container.scrollLeft = step * visibleRooms.length;
     setActiveIndex(0);
     return () => {
       if (resetTimerRef.current) {
         window.clearTimeout(resetTimerRef.current);
       }
     };
-  }, [activeRooms.length]);
+  }, [visibleRooms.length]);
 
   const scheduleLoopReset = (targetIndex: number, length: number, step: number) => {
     if (resetTimerRef.current) {
@@ -67,7 +71,7 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
 
     const card = container.querySelector<HTMLElement>("[data-room-card]");
     const step = card ? card.offsetWidth + 12 : container.clientWidth * 0.82;
-    const length = activeRooms.length;
+    const length = visibleRooms.length;
 
     if (length <= 1) {
       container.scrollBy({
@@ -98,7 +102,7 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
     if (!card) return;
 
     const step = card.offsetWidth + 12;
-    const length = activeRooms.length;
+    const length = visibleRooms.length;
     if (!length) return;
 
     const currentIndex = Math.round(container.scrollLeft / step);
@@ -156,7 +160,7 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
           <article
             key={`${room.name}-${index}`}
             data-room-card
-            className="break-keep flex w-[calc(100vw-3rem)] shrink-0 snap-start flex-col overflow-hidden border border-[#d3d7df] bg-white md:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-3.75rem)/4)]"
+            className="break-keep flex w-[calc(100vw-3rem)] shrink-0 snap-center flex-col overflow-hidden border border-[#d3d7df] bg-white md:w-[calc((100%-1rem)/2)] md:snap-start lg:w-[calc((100%-3.75rem)/4)]"
           >
             <div className="flex flex-1 flex-col px-8 pb-8 pt-6 md:px-6 md:pb-8 md:pt-6 lg:px-5 lg:pb-8 lg:pt-6">
               <div className="min-h-fit p-0 text-center text-[20px] font-medium leading-tight text-[var(--color-primary)] md:text-[20px] lg:text-[20px]">
@@ -203,7 +207,7 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
 
             <Link
               href="/notice/obituary"
-              className="mt-auto flex min-h-[74px] items-center justify-center bg-[rgba(23,34,70,0.86)] px-6 text-center text-[16px] font-medium text-white transition-colors hover:bg-[var(--color-primary)] md:min-h-[56px] md:text-[16px] lg:min-h-[52px] lg:text-[16px]"
+              className="mt-auto flex min-h-[56px] items-center justify-center bg-[rgba(23,34,70,0.86)] px-6 text-center text-[16px] font-medium text-white transition-colors hover:bg-[var(--color-primary)] md:min-h-[56px] md:text-[16px] lg:min-h-[52px] lg:text-[16px]"
             >
               상세 일정 보기
             </Link>
@@ -211,9 +215,9 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
         ))}
       </div>
 
-      {activeRooms.length > 1 && (
+      {visibleRooms.length > 1 && (
         <div className="mt-4 flex items-center justify-center gap-1.5">
-          {activeRooms.map((room, index) => (
+          {visibleRooms.map((room, index) => (
             <button
               key={`${room.name}-dot`}
               type="button"
@@ -224,7 +228,7 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
                 const card = container.querySelector<HTMLElement>("[data-room-card]");
                 if (!card) return;
                 const step = card.offsetWidth + 12;
-                const baseIndex = activeRooms.length + index;
+                const baseIndex = visibleRooms.length + index;
                 container.scrollTo({ left: baseIndex * step, behavior: "smooth" });
                 setActiveIndex(index);
               }}

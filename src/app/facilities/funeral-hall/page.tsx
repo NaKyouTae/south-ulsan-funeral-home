@@ -11,8 +11,9 @@ const ROOMS = [
     capacity: "120명",
     features: ["프리미엄 접객실", "전용 휴게공간"],
     photos: [
-      { src: "/hero-building-main.jpeg", alt: "VIP101호 사진 1", label: "빈소 전경" },
-      { src: "/hero-building.png", alt: "VIP101호 사진 2", label: "공간 분위기" },
+      { src: "/room-funeral-hall.jpeg", alt: "VIP101호 빈소", label: "빈소" },
+      { src: "/room-reception.jpeg", alt: "VIP101호 접객실", label: "접객실" },
+      { src: "/room-family-lounge.jpeg", alt: "VIP101호 가족휴게실", label: "가족휴게실" },
     ],
   },
   {
@@ -21,8 +22,9 @@ const ROOMS = [
     capacity: "120명",
     features: ["프리미엄 접객실", "전용 휴게공간"],
     photos: [
-      { src: "/hero-building.png", alt: "VIP301호 사진 1", label: "빈소 전경" },
-      { src: "/hero-building-main.jpeg", alt: "VIP301호 사진 2", label: "접객 공간" },
+      { src: "/room-funeral-hall.jpeg", alt: "VIP301호 빈소", label: "빈소" },
+      { src: "/room-reception.jpeg", alt: "VIP301호 접객실", label: "접객실" },
+      { src: "/room-family-lounge.jpeg", alt: "VIP301호 가족휴게실", label: "가족휴게실" },
     ],
   },
   {
@@ -31,8 +33,8 @@ const ROOMS = [
     capacity: "80명",
     features: ["넓은 접객실"],
     photos: [
-      { src: "/hero-building-main.jpeg", alt: "VIP302호 사진 1", label: "빈소 전경" },
-      { src: "/hero-building.png", alt: "VIP302호 사진 2", label: "공간 분위기" },
+      { src: "/room-funeral-hall-302-402.jpeg", alt: "VIP302호 빈소", label: "빈소" },
+      { src: "/room-reception-302-402.jpeg", alt: "VIP302호 접객실", label: "접객실" },
     ],
   },
   {
@@ -41,8 +43,9 @@ const ROOMS = [
     capacity: "120명",
     features: ["프리미엄 접객실", "전용 휴게공간"],
     photos: [
-      { src: "/hero-building.png", alt: "VIP401호 사진 1", label: "빈소 전경" },
-      { src: "/hero-building-main.jpeg", alt: "VIP401호 사진 2", label: "접객 공간" },
+      { src: "/room-funeral-hall.jpeg", alt: "VIP401호 빈소", label: "빈소" },
+      { src: "/room-reception.jpeg", alt: "VIP401호 접객실", label: "접객실" },
+      { src: "/room-family-lounge.jpeg", alt: "VIP401호 가족휴게실", label: "가족휴게실" },
     ],
   },
   {
@@ -51,8 +54,8 @@ const ROOMS = [
     capacity: "80명",
     features: ["넓은 접객실"],
     photos: [
-      { src: "/hero-building-main.jpeg", alt: "VIP402호 사진 1", label: "빈소 전경" },
-      { src: "/hero-building.png", alt: "VIP402호 사진 2", label: "공간 분위기" },
+      { src: "/room-funeral-hall-302-402.jpeg", alt: "VIP402호 빈소", label: "빈소" },
+      { src: "/room-reception-302-402.jpeg", alt: "VIP402호 접객실", label: "접객실" },
     ],
   },
 ];

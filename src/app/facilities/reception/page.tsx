@@ -1,7 +1,13 @@
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import Prose from "@/components/Prose";
 
 export const metadata = { title: "접객실" };
+
+const RECEPTION_PHOTOS = [
+  { src: "/room-reception.jpeg", alt: "접객실 사진 1", label: "101호, 301호, 401호" },
+  { src: "/room-reception-302-402.jpeg", alt: "접객실 사진 2", label: "302호, 402호" },
+];
 
 export default function ReceptionPage() {
   return (
@@ -13,6 +19,25 @@ export default function ReceptionPage() {
         breadcrumbs={[{ label: "홈", href: "/" }, { label: "시설안내" }, { label: "접객실" }]}
       />
       <section className="subpage-body mx-auto max-w-7xl px-6 py-16">
+        <div className="mb-10 grid gap-6 md:grid-cols-2">
+          {RECEPTION_PHOTOS.map((photo) => (
+            <div key={photo.alt} className="overflow-hidden border border-[var(--color-border)] bg-white">
+              <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-primary-tint)]">
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+                <div className="absolute left-5 top-5 rounded-full bg-white/92 px-3 py-1 text-xs font-semibold text-[var(--color-primary)]">
+                  {photo.label}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <Prose>
           <h3 className="!mt-0">접객실 시설</h3>
           <ul>
