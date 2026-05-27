@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import MobileRoomCarousel from "@/components/MobileRoomCarousel";
+import { connection } from "next/server";
+import MobileRoomCarousel, { type Room } from "@/components/MobileRoomCarousel";
 import SectionTitle from "@/components/SectionTitle";
+import { mergeWithRoomList } from "@/lib/fis/adapter";
+import { getObituaries } from "@/lib/fis/client";
 import { SITE } from "@/lib/site";
 
 const HERO_LINKS = [
@@ -9,15 +12,27 @@ const HERO_LINKS = [
   { title: "상세안내", href: "/facilities/funeral-hall" },
 ];
 
-const ROOMS = [
-  { name: "VIP101호", status: "사용중", deceased: "故 정순훈", chief: "이재영, 이재남, 강수옥", departure: "2026-05-27 09:20", site: "울산하늘공원(승화원) 대전현 충원" },
-  { name: "VIP301호", status: "사용중", deceased: "故 박종숙(데레사)", chief: "서진혁, 서문경, 서문의, 서희정, 노현정, 정신영, 홍성균, 안종득, 서장우, 홍세은", departure: "2026-05-27 09:00", site: "울산하늘공원(승화원)" },
-  { name: "VIP302호", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
-  { name: "VIP401호", status: "사용중", deceased: "故 김정순(권사)", chief: "김종현, 김종균, 김소영, 양성호, 한영란, 김민성, 최정재, 김다운, 양지원", departure: "2026-05-27 08:20", site: "서울시립승화원-청아공원" },
-  { name: "VIP402호", status: "사용가능", deceased: "-", chief: "-", departure: "-", site: "-" },
-];
+async function fetchRooms(): Promise<Room[]> {
+  let obituaries: Awaited<ReturnType<typeof getObituaries>> = [];
+  try {
+    obituaries = await getObituaries();
+  } catch (error) {
+    console.error("[Home] 빈소 현황 조회 실패", error);
+  }
+  return mergeWithRoomList(obituaries).map((o) => ({
+    name: o.roomLabel,
+    status: "사용중",
+    deceased: o.isPlaceholder ? "-" : `故 ${o.deceased}`,
+    chief: o.sangjuNames,
+    departure: o.balinDisplay,
+    site: o.site,
+  }));
+}
 
-export default function HomePage() {
+export default async function HomePage() {
+  await connection();
+  const rooms = await fetchRooms();
+
   return (
     <>
       <section className="relative overflow-hidden bg-[var(--color-primary)]">
@@ -82,7 +97,7 @@ export default function HomePage() {
             </div>
 
             <div className="mt-8 md:mt-0">
-              <MobileRoomCarousel rooms={ROOMS} />
+              <MobileRoomCarousel rooms={rooms} />
             </div>
           </div>
         </div>

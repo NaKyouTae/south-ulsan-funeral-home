@@ -15,6 +15,14 @@ export const SITE = {
   hours: "24시간 연중무휴",
 };
 
+export const ROOM_LIST = [
+  "VIP101호",
+  "VIP301호",
+  "VIP302호",
+  "VIP401호",
+  "VIP402호",
+] as const;
+
 export type NavItem = {
   label: string;
   href: string;
