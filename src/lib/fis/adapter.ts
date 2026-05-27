@@ -97,5 +97,7 @@ export function toObituaries(list: FisRawFuneral[]): Obituary[] {
 export function mergeWithRoomList(obituaries: Obituary[]): Obituary[] {
   const occupied = new Set(obituaries.map((o) => o.roomName));
   const emptyRooms = ROOM_LIST.filter((r) => !occupied.has(r)).map(placeholderObituary);
-  return [...obituaries, ...emptyRooms];
+  const order = new Map<string, number>(ROOM_LIST.map((name, i) => [name, i]));
+  const rank = (name: string) => order.get(name) ?? Number.MAX_SAFE_INTEGER;
+  return [...obituaries, ...emptyRooms].sort((a, b) => rank(a.roomName) - rank(b.roomName));
 }
