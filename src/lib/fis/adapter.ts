@@ -16,6 +16,17 @@ export function formatBalinDate(raw: string): string {
   return `${y}년 ${mo}월 ${d}일 ${h}시 ${mi}분`;
 }
 
+const FIS_ORIGIN = "https://fis.daqda.kr";
+
+export function normalizePhotoPath(raw: string): string {
+  const v = (raw ?? "").trim();
+  if (!v) return "";
+  if (/^https?:\/\//i.test(v)) return v;
+  const fixed = v.replace(/^(https?:)\/(?!\/)/i, "$1//");
+  if (/^https?:\/\//i.test(fixed)) return fixed;
+  return `${FIS_ORIGIN}${fixed.startsWith("/") ? "" : "/"}${fixed}`;
+}
+
 function joinSite(crematePlace: string, jangjiName: string): string {
   const c = (crematePlace ?? "").trim();
   const j = (jangjiName ?? "").trim();
@@ -42,7 +53,7 @@ export function toObituary(raw: FisRawFuneral): Obituary {
     age: (raw.Age ?? "").trim(),
     gender: (raw.Gender ?? "").trim(),
     religion: (raw.Religion ?? "").trim(),
-    photoPath: (raw.PhotoPath ?? "").trim(),
+    photoPath: normalizePhotoPath(raw.PhotoPath),
     roomDt: raw.RoomDt ?? "",
     ipDt: raw.IpDt ?? "",
     balinDt: raw.BalinDt ?? "",
