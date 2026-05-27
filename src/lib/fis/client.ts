@@ -1,7 +1,7 @@
 import { toObituaries } from "./adapter";
 import type { FisResponse, Obituary } from "./types";
 
-const FIS_URL = "https://fis.daqda.kr/api/HpFuneral.aspx?ci=namulsan360";
+const FIS_URL = "https://fis.daqda.kr/api/HpFuneral.aspx?ci=nuf";
 
 export async function getObituaries(): Promise<Obituary[]> {
   const res = await fetch(FIS_URL, {
