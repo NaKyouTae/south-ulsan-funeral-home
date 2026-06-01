@@ -7,11 +7,6 @@ import { mergeWithRoomList } from "@/lib/fis/adapter";
 import { getObituaries } from "@/lib/fis/client";
 import { SITE } from "@/lib/site";
 
-const HERO_LINKS = [
-  { title: "오시는 길", href: "/about/location" },
-  { title: "상세안내", href: "/facilities/funeral-hall" },
-];
-
 async function fetchRooms(): Promise<Room[]> {
   let obituaries: Awaited<ReturnType<typeof getObituaries>> = [];
   try {
@@ -76,22 +71,33 @@ export default async function HomePage() {
               </div>
 
               <div className="mt-3 lg:mt-[28px]">
-                <div className="grid grid-cols-2 gap-3">
-                  {HERO_LINKS.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="flex min-h-[56px] items-center justify-center rounded-sm border border-white/28 bg-[rgba(23,34,70,0.5)] px-3 text-center text-[15px] font-medium text-white transition-colors hover:border-white/55 hover:bg-[rgba(23,34,70,0.62)] md:min-h-[56px] md:cursor-pointer md:px-4 md:text-base"
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
                 <a
                   href={`tel:${SITE.phoneLink}`}
-                  className="mt-2.5 inline-flex min-h-[64px] w-full items-center justify-center rounded-sm bg-[var(--color-accent)] px-3 text-center text-[18px] font-bold text-white transition-colors hover:bg-[var(--color-accent-soft)] md:mt-3 md:min-h-[64px] md:cursor-pointer md:px-4 md:text-[18px]"
+                  className="inline-flex min-h-[64px] w-full items-center justify-center rounded-sm bg-[var(--color-accent)] px-3 text-center text-[18px] font-bold text-white shadow-[0_14px_32px_rgba(0,0,0,0.18)] transition-all hover:-translate-y-0.5 hover:bg-[var(--color-accent-soft)] md:min-h-[64px] md:cursor-pointer md:px-4 md:text-[18px]"
                 >
                   24시간 상담 {SITE.phone}
+                </a>
+                <a
+                  href="tel:01065991053"
+                  className="mt-3 flex items-center gap-4 rounded-sm border border-white/12 bg-[#1a263d] px-4 py-3 text-left shadow-[0_14px_32px_rgba(0,0,0,0.18)] transition-transform hover:-translate-y-0.5"
+                >
+                  <div className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-sm bg-black/20">
+                    <Image
+                      src="/chrysanthemum-badge.jpg"
+                      alt="국화꽃 이미지"
+                      fill
+                      sizes="72px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex min-w-0 flex-1 flex-col items-center justify-center text-center">
+                    <div className="font-serif text-[36px] font-bold leading-none tracking-[0.055em] text-[#e1c376]">
+                      근조화환주문
+                    </div>
+                    <div className="mt-2 text-[16px] font-medium leading-tight tracking-[0.0625em] text-white">
+                      하늘플라워 010-6599-1053
+                    </div>
+                  </div>
                 </a>
               </div>
             </div>
