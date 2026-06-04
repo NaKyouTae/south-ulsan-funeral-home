@@ -21,8 +21,9 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
   const resetTimerRef = useRef<number | null>(null);
   const activeRooms = rooms.filter((room) => room.status === "사용중");
   const inactiveRooms = rooms.filter((room) => room.status !== "사용중");
-  const visibleRooms =
-    activeRooms.length <= 3 ? [...activeRooms, ...inactiveRooms] : activeRooms;
+  const visibleRooms = (
+    activeRooms.length <= 3 ? [...activeRooms, ...inactiveRooms] : activeRooms
+  ).slice(0, 5);
   const loopRooms =
     visibleRooms.length > 1 ? [...visibleRooms, ...visibleRooms, ...visibleRooms] : visibleRooms;
   const [activeIndex, setActiveIndex] = useState(0);
@@ -181,7 +182,7 @@ export default function MobileRoomCarousel({ rooms }: MobileRoomCarouselProps) {
           <article
             key={`${room.name}-${index}`}
             data-room-card
-            className="break-keep flex min-h-[424px] w-[calc(100vw-3rem)] shrink-0 snap-center flex-col overflow-hidden border border-[#d3d7df] bg-white md:w-[calc((100%-1rem)/2)] md:snap-start lg:w-[calc((100%-3.75rem)/4)]"
+            className="break-keep flex w-[calc(100vw-3rem)] shrink-0 snap-center flex-col overflow-hidden border border-[#d3d7df] bg-white md:w-[calc((100%-1rem)/2)] md:snap-start lg:w-[calc((100%-2.5rem)/3)]"
           >
             <div className="flex flex-1 flex-col px-8 pb-8 pt-6 md:px-6 md:pb-8 md:pt-6 lg:px-5 lg:pb-8 lg:pt-6">
               <div className="min-h-fit p-0 text-center text-[20px] font-medium leading-tight text-[var(--color-primary)] md:text-[20px] lg:text-[20px]">

@@ -5,7 +5,7 @@ export const SITE = {
   phone: "052) 238-4444",
   phoneEmergency: "052) 238-4444",
   phoneLink: "0522384444",
-  fax: "052) 238-4444",
+  fax: "052) 238-4445",
   address: "울산광역시 울주군 온산읍 덕신외로 360",
   postalCode: "44999",
   lat: 35.4325223,

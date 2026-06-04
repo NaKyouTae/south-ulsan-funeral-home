@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-[var(--color-primary)] text-white/80">
       {/* 긴급 상담 배너 */}
       <div className="border-b border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-8 md:flex-row md:items-center">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-8 text-center sm:px-6 md:flex-row md:items-center md:text-left">
           <div className="font-serif text-[22px] leading-snug text-white md:text-[24px]">
             임종 후 가장 먼저, {SITE.name}으로 연락주세요.
           </div>
@@ -23,7 +23,7 @@ export default function Footer() {
       </div>
 
       {/* 메뉴 그리드 */}
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-10 text-[1rem] md:grid-cols-3 lg:grid-cols-6">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-5 py-10 text-[1rem] sm:px-6 md:grid-cols-3 lg:grid-cols-6">
         {NAV.map((item) => (
           <div key={item.href}>
             <div className="mb-3 text-[1.05rem] font-medium text-white">{item.label}</div>
@@ -42,7 +42,7 @@ export default function Footer() {
 
       {/* 회사 정보 */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-6 py-8 text-sm text-white/70 md:flex-row md:items-center">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-5 py-8 text-sm text-white/70 sm:px-6 md:flex-row md:items-center">
           <div className="space-y-2">
             <div className="font-serif text-lg text-white">{SITE.name}</div>
             <div>

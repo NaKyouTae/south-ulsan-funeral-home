@@ -28,7 +28,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-white/95 backdrop-blur">
       {/* 상단 유틸리티 바 */}
       <div className="hidden md:block bg-[var(--color-primary)] text-white/90">
-        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-6 text-sm">
+        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-5 text-sm sm:px-6">
           <div className="flex items-center gap-4">
             <span className="font-serif tracking-wider">{SITE.tagline}</span>
           </div>
@@ -44,7 +44,7 @@ export default function Header() {
 
       {/* 메인 네비 */}
       <div
-        className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 md:h-22"
+        className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-6 md:h-22"
         onMouseLeave={() => setHovered(null)}
       >
         <Link href="/" className="flex h-full items-center">
@@ -99,13 +99,15 @@ export default function Header() {
         <div className="hidden lg:flex items-center gap-3">
           <a
             href={`tel:${SITE.phoneLink}`}
-            className="text-right leading-tight"
+            className="inline-flex min-h-[56px] items-center rounded-sm border border-[var(--color-border)] bg-white px-5 text-right leading-tight shadow-[0_8px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 hover:border-black hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)]"
           >
-            <div className="text-xs tracking-widest text-[var(--color-fg-muted)] uppercase">
-              24h Contact
-            </div>
-            <div className="font-serif text-xl font-bold text-[var(--color-primary)]">
-              {SITE.phone}
+            <div>
+              <div className="text-[11px] tracking-[0.18em] text-[var(--color-fg-muted)] uppercase">
+                24시간 상담 가능
+              </div>
+              <div className="font-serif text-xl font-bold text-[var(--color-primary)]">
+                {SITE.phone}
+              </div>
             </div>
           </a>
         </div>
@@ -138,7 +140,7 @@ export default function Header() {
       {/* 모바일 메뉴 */}
       {open && (
         <div className="absolute inset-x-0 top-full z-[60] border-t border-[var(--color-border)] bg-white shadow-[0_24px_48px_rgba(0,0,0,0.12)] lg:hidden">
-          <div className="flex max-h-[calc(100dvh-4.5rem)] flex-col overflow-y-auto px-6 py-5 md:max-h-[calc(100dvh-5.5rem)]">
+          <div className="flex max-h-[calc(100dvh-4.5rem)] flex-col overflow-y-auto px-5 py-5 sm:px-6 md:max-h-[calc(100dvh-5.5rem)]">
             {NAV.map((item) => (
               <div key={item.href} className="border-b border-[var(--color-border)] py-4 last:border-0">
                 <Link
