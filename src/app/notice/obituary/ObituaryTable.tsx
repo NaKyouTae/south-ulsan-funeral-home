@@ -8,6 +8,23 @@ type Props = {
   obituaries: Obituary[];
 };
 
+function groupSangjuByRelation(obituary: Obituary) {
+  const groups = new Map<string, string[]>();
+
+  obituary.sangju.forEach((person) => {
+    const relation = person.rel?.trim() || "상주";
+    const name = person.name?.trim() || "-";
+    const current = groups.get(relation) ?? [];
+    current.push(name);
+    groups.set(relation, current);
+  });
+
+  return Array.from(groups.entries()).map(([relation, names]) => ({
+    relation,
+    names,
+  }));
+}
+
 export default function ObituaryTable({ obituaries }: Props) {
   const [selected, setSelected] = useState<Obituary | null>(null);
 
@@ -27,6 +44,7 @@ export default function ObituaryTable({ obituaries }: Props) {
           <tbody>
             {obituaries.map((o) => {
               const clickable = !o.isPlaceholder;
+              const sangjuGroups = groupSangjuByRelation(o);
               return (
                 <tr
                   key={o.id}
@@ -54,7 +72,18 @@ export default function ObituaryTable({ obituaries }: Props) {
                     {o.deceased}
                   </td>
                   <td className="w-[41%] align-middle border-l border-[#dfe2e7] px-8 py-7 text-[16px] font-medium leading-[1.65] text-[#6a7079]">
-                    {o.sangjuNames}
+                    {sangjuGroups.length > 0 ? (
+                      <div className="flex flex-wrap gap-x-4 gap-y-3">
+                        {sangjuGroups.map((group) => (
+                          <span key={`${o.id}-${group.relation}`} className="inline-flex items-center gap-1.5">
+                            <span className="text-[var(--color-primary)]">[{group.relation}]</span>
+                            <span>{group.names.join(", ")}</span>
+                          </span>
+                        ))}
+                      </div>
+                    ) : (
+                      o.sangjuNames
+                    )}
                   </td>
                   <td className="w-[340px] min-w-[340px] align-middle border-l border-[#dfe2e7] px-8 py-7 text-center text-[16px] font-medium leading-[1.6] text-[#6a7079]">
                     {o.site}

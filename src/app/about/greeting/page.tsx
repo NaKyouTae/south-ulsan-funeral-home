@@ -33,8 +33,8 @@ export default function GreetingPage() {
           </p>
         </div>
         <div className="mt-14 pt-8 border-t border-[var(--color-border)] flex justify-end items-center gap-3">
-          <span className="text-[var(--color-fg-muted)]">남울산전문장례식장 대표</span>
-          <span className="font-serif text-xl">노진한</span>
+          <span className="text-[var(--color-fg-muted)]">남울산전문장례식장 회장</span>
+          <span className="font-serif text-xl">안창옥</span>
         </div>
       </article>
     </>

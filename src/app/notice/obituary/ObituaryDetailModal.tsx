@@ -8,6 +8,23 @@ type Props = {
   onClose: () => void;
 };
 
+function groupSangjuByRelation(obituary: Obituary) {
+  const groups = new Map<string, string[]>();
+
+  obituary.sangju.forEach((person) => {
+    const relation = person.rel?.trim() || "상주";
+    const name = person.name?.trim() || "-";
+    const current = groups.get(relation) ?? [];
+    current.push(name);
+    groups.set(relation, current);
+  });
+
+  return Array.from(groups.entries()).map(([relation, names]) => ({
+    relation,
+    names,
+  }));
+}
+
 function fmtDateTime(raw: string): string {
   if (!raw) return "-";
   const m = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})$/.exec(raw.trim());
@@ -36,6 +53,7 @@ export default function ObituaryDetailModal({ obituary, onClose }: Props) {
   const meta = [obituary.age && `향년 ${obituary.age}세`, obituary.gender, obituary.religion]
     .filter(Boolean)
     .join(" · ");
+  const sangjuGroups = groupSangjuByRelation(obituary);
 
   return (
     <div
@@ -114,16 +132,16 @@ export default function ObituaryDetailModal({ obituary, onClose }: Props) {
           </dl>
         </div>
 
-        {obituary.sangju.length > 0 && (
+        {sangjuGroups.length > 0 && (
           <div className="border-t border-[#e6e8ee] px-7 py-6">
             <div className="text-[13px] font-semibold text-[var(--color-fg-muted)]">상주</div>
             <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {obituary.sangju.map((s, i) => (
-                <li key={`${s.rel}-${s.name}-${i}`} className="flex items-baseline gap-2 text-[15px]">
+              {sangjuGroups.map((group) => (
+                <li key={group.relation} className="flex items-baseline gap-2 text-[15px]">
                   <span className="inline-flex h-[22px] min-w-[52px] items-center justify-center bg-[var(--color-primary-tint)] px-2 text-[12px] font-medium text-[var(--color-primary)]">
-                    {s.rel || "상주"}
+                    {group.relation}
                   </span>
-                  <span className="text-[var(--color-fg)]">{s.name || "-"}</span>
+                  <span className="text-[var(--color-fg)]">{group.names.join(", ")}</span>
                 </li>
               ))}
             </ul>
